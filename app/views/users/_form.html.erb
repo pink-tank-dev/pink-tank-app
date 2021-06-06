@@ -1,0 +1,16 @@
+<%= form_with model: @user, method: new_user? ? :post : :put do |form| %>
+  <table>
+    <tr>
+      <td><%= form.label :name %></td>
+      <td><%= form.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :email %></td>
+      <td><%= form.email_field :email %></td>
+    </tr>
+    <% if new_user? %>
+      <%= render partial: 'password_fields', locals: { form: form } %>
+    <% end %>
+  </table>
+  <%= form.submit new_user? ? "Create User" : "Update User" %>
+<% end %>
