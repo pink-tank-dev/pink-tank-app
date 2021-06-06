@@ -1,0 +1,27 @@
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "db/schema.rb"
+    - "db/**/*"
+    - "lib/**/*"
+    - "node_modules/**/*"
+
+Layout/HashAlignment:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
