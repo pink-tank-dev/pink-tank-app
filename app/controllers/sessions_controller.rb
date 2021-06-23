@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
     return unless current_user.present?
 
-    redirect_to dashboard_path
+    redirect_to artists_path
   end
 
   def create
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to dashboard_path
+      redirect_to artists_path
     else
       flash[:warning] = 'Something went wrong! Make sure your name and password are correct.'
       redirect_to root_path
