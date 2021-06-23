@@ -10,8 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(create_params)
-    if @user.valid?
-      @user.save
+    if @user.save
       redirect_to @user, success: "#{@user.name} successfully created."
     else
       flash[:danger] = user_errors
@@ -19,14 +18,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    redirect_to users_path, warning: "User not found." unless @user.present?
+  end
 
-  def edit_password; end
 
   def update
     @user.assign_attributes(update_params)
-    if @user.valid?
-      @user.save
+    if @user.save
       redirect_to @user, success: "#{@user.name} successfully updated."
     else
       flash[:danger] = user_errors
@@ -34,10 +33,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+    redirect_to users_path, warning: "User not found." unless @user.present?
+  end
+
   def update_password
     @user.assign_attributes(update_params)
-    if @user.valid?
-      @user.save
+    if @user.save
       redirect_to @user, success: "Password successfully updated."
     else
       flash[:danger] = user_errors
@@ -45,7 +47,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    redirect_to users_path, warning: "User not found." unless @user.present?
+  end
 
   private
 

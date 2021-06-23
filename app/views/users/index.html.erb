@@ -1,2 +1,21 @@
-<div class="container">
+<div class="container mt-2 mb-2">
+  <h3>Users</h3>
+  <%= link_to "New User", new_user_path %>
+  <table class="table caption-top">
+    <caption>List of users</caption>
+    <thead class="thead-light">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <th><%= user.id %></th>
+          <td><%= link_to "#{user.name}", user_path(user) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
