@@ -13,6 +13,8 @@ module PinkTankApp
     config.generators do |g|
       g.helper false
       g.assets false
+      g.view_specs false
+      g.factory_bot false
     end
     config.time_zone = 'Asia/Kuala_Lumpur'
     config.i18n.default_locale = :en

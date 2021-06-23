@@ -28,15 +28,15 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'font-awesome-rails'
-gem 'rack-cors'
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails'
-  gem 'rubocop', require: false
-  gem 'rubocop-rspec'
-  gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+  gem 'faker', '~> 2.18'
+  gem 'rexml', '~> 3.2', '>= 3.2.4'
+  gem 'rspec-rails', '~> 5.0', '>= 5.0.1'
 end
 
 group :development do
@@ -56,6 +56,7 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'shoulda-matchers', '~> 4.0'
   gem 'webdrivers'
 end
 
