@@ -1,0 +1,15 @@
+<%= form_with model: @artist, method: @artist.new_record? ? :post : :put do |form| %>
+  <div class="row">
+    <div class="col-3">
+      <div class="form-group mt-1 mb-1">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group mt-1 mb-1">
+        <%= form.label :about %>
+        <%= form.text_area :about, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <%= form.submit @artist.new_record? ? "Create Artist" : "Update Artist", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="container mt-2 mb-2">
+  <h3>
+    <%= @artist.name %>
+    <%= link_to edit_artist_path(@artist) do %>
+      <% fa_icon "pencil" %>
+    <% end %>
+  </h3>
+  <div class="row">
+    <div class="col-3">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>About</th>
+            <td><%= @artist.about %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
