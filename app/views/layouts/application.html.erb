@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pink Tank</title>
+    <title>PINK TANK ADMIN</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,7 +13,9 @@
 
   <body>
     <%= render partial: "layouts/header"%>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
     <%= render partial: "layouts/footer"%>
   </body>
 </html>
