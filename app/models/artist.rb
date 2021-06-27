@@ -10,4 +10,5 @@
 #
 class Artist < ApplicationRecord
   validates :name, :about, presence: true
+  has_many :posts
 end
