@@ -7,6 +7,7 @@
       <tr>
         <th>#</th>
         <th>Name</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
         <tr>
           <th><%= artist.id %></th>
           <td><%= link_to artist.name, artist_path(artist) %></td>
+          <td><%= link_to "Posts", artist_posts_path(artist), class: "btn btn-sm btn-primary" %></td>
         </tr>
       <% end %>
     </tbody>

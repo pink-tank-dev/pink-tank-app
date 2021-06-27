@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       put 'update_password'
     end
   end
-  resources :artists, except: %i[destroy]
+  resources :artists, except: %i[destroy] do
+    resources :posts, except: %i[destroy]
+  end
 
   draw :api
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
