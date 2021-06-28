@@ -1,14 +1,10 @@
 class ContactUsMailer < ApplicationMailer
   default to: 'pinktankcollective@gmail.com'
-  def contact_us
+  def send
     @message = params[:message]
-    mail(from: sender,
+    mail(from: "#{params[:name]} <#{params[:email]}>",
          subject: params[:subject],
          template_path: 'mailers/contact_us_mailer',
          template_name: 'contact_us')
-  end
-
-  def sender
-    "#{params[:name]} <#{params[:email]}>"
   end
 end
