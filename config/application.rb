@@ -17,6 +17,7 @@ module PinkTankApp
       g.factory_bot false
     end
     config.time_zone = 'Asia/Kuala_Lumpur'
+    config.beginning_of_the_week = :sunday
     config.i18n.default_locale = :en
 
     # Configuration for the application, engines, and railties goes here.
