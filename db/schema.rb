@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_06_23_132733) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_06_23_132733) do
   create_table "posts", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "title"
-    t.integer "artist_id"
+    t.bigint "artist_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_posts_on_artist_id"

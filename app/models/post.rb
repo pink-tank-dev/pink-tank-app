@@ -2,12 +2,12 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  status     :integer          default("draft"), not null
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  artist_id  :integer
+#  artist_id  :bigint
 #
 # Indexes
 #

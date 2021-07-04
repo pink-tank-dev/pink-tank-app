@@ -2,7 +2,7 @@
 #
 # Table name: artists
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  about      :text
 #  name       :string
 #  created_at :datetime         not null
