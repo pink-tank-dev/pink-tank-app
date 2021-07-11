@@ -14,7 +14,8 @@
 #  index_posts_on_artist_id  (artist_id)
 #
 class Post < ApplicationRecord
-  enum status: { draft: 0, posted: 1 }
+  enum status: { draft: 0, published: 1 }
   validates :title, presence: true
+  has_rich_text :content
   belongs_to :artist
 end
