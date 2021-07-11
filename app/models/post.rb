@@ -17,6 +17,6 @@
 class Post < ApplicationRecord
   enum status: { draft: 0, published: 1 }
   validates :title, presence: true
-  has_rich_text :content
+  has_rich_text :body
   belongs_to :artist
 end
