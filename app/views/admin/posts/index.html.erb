@@ -1,6 +1,6 @@
 <div class="container mt-2 mb-2">
   <h3><%= @artist.name%>'s Posts</h3>
-  <%= link_to "New Post", new_artist_post_path(@artist) %>
+  <%= link_to "New Post", new_admin_artist_post_path(@artist) %>
   <table class="table caption-top">
     <caption>Posts</caption>
     <thead>
@@ -15,7 +15,7 @@
       <% @posts.each do |post| %>
         <tr>
           <th><%= post.id %></th>
-          <td><%= link_to post.title, artist_post_path(@artist, post) %></td>
+          <td><%= link_to post.title, admin_artist_post_path(@artist, post) %></td>
           <td>
             <span class="badge rounded-pill bg-<%= post.published? ? "success" : "warning" %>">
               <%= post.status.capitalize %>

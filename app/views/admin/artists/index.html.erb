@@ -1,6 +1,6 @@
 <div class="container mt-2 mb-2">
   <h3>Artists</h3>
-  <%= link_to "New Artist", new_artist_path %>
+  <%= link_to "New Artist", new_admin_artist_path %>
   <table class="table caption-top">
     <caption>List of artists</caption>
     <thead>
@@ -14,8 +14,8 @@
       <% @artists.each do |artist| %>
         <tr>
           <th><%= artist.id %></th>
-          <td><%= link_to artist.name, artist_path(artist) %></td>
-          <td><%= link_to "Posts", artist_posts_path(artist), class: "btn btn-sm btn-primary" %></td>
+          <td><%= link_to artist.name, admin_artist_path(artist) %></td>
+          <td><%= link_to "Posts", admin_artist_posts_path(artist), class: "btn btn-sm btn-primary" %></td>
         </tr>
       <% end %>
     </tbody>

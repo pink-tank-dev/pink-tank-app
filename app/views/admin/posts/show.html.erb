@@ -1,8 +1,8 @@
 <div class="container mt-2 mb-2">
-  <%= link_to "#{@artist.name}'s Posts", artist_posts_path(@artist) %>
+  <%= link_to "#{@artist.name}'s Posts", admin_artist_posts_path(@artist) %>
   <h5>
     <%= @post.title %>
-    <%= link_to edit_artist_post_path(@artist, @post) do %>
+    <%= link_to edit_admin_artist_post_path(@artist, @post) do %>
       <% fa_icon "pencil" %>
     <% end %>
   </h5>
