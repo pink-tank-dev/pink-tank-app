@@ -1,21 +1,29 @@
 <div class="container-fluid mt-2 mb-2">
   <div class="row justify-content-center">
-    <div class="col-2">
-      <div class="card text-center">
-        <div class="card-header">Welcome to Pink Tank</div>
+    <div class="col-md-4">
+      <div id="welcome-card" class="card text-center">
         <div class="card-body">
-          <%= form_with url: login_path, method: :post do |form| %>
-            <div class="row mb-2">
-              <%= form.email_field :email, placeholder: "E-mail", class: "form-control" %>
-            </div>
-            <div class="row mb-2">
-              <%= form.password_field :password, placeholder: "Password", class: "form-control" %>
-            </div>
-            <%= form.submit "Login", class: "btn btn-primary" %>
-          <% end %>
+          <h5 class="card-title">Welcome to Pink Tank!</h5>
+          <p class="card-text">Log in as...</p>
+          <button
+            id="admin-button"
+            class="btn btn-primary"
+            type="button">
+            Admin
+          </button>
+          <button
+            id="artist-button"
+            class="btn btn-primary"
+            type="button">
+            Artist
+          </button>
         </div>
       </div>
+
+      <%= render partial: 'admin_card' %>
+      <%= render partial: 'artist_card' %>
     </div>
   </div>
 </div>
 
+<%= javascript_pack_tag 'sessions' %>

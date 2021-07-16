@@ -1,0 +1,22 @@
+<div id="artist-card" class="card text-center" style="display:none">
+  <div class="card-header">
+    <button
+      id="artist-back-button"
+      class="btn btn-link"
+      type="button">
+      Back
+    </button>
+  </div>
+  <div class="card-body">
+    <h5>Artist Login</h5>
+    <%= form_with url: artist_login_path, method: :post do |form| %>
+      <div class="row mb-2">
+        <%= form.email_field :email, placeholder: "E-mail", class: "form-control" %>
+      </div>
+      <div class="row mb-2">
+        <%= form.password_field :password, placeholder: "Password", class: "form-control" %>
+      </div>
+      <%= form.submit "Login", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

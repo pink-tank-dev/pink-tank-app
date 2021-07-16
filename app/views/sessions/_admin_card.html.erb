@@ -1,0 +1,22 @@
+<div id="admin-card" class="card text-center" style="display:none">
+  <div class="card-header">
+    <button
+      id="admin-back-button"
+      class="btn btn-link"
+      type="button">
+      Back
+    </button>
+  </div>
+  <div class="card-body">
+    <h5>Admin Login</h5>
+    <%= form_with url: admin_login_path, method: :post do |form| %>
+      <div class="row mb-2">
+        <%= form.email_field :email, placeholder: "E-mail", class: "form-control" %>
+      </div>
+      <div class="row mb-2">
+        <%= form.password_field :password, placeholder: "Password", class: "form-control" %>
+      </div>
+      <%= form.submit "Login", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
