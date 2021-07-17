@@ -1,0 +1,47 @@
+<div class="container mt-2 mb-2">
+  <h3>
+    <%= current_artist.name %>
+    <%= link_to edit_artist_module_profile_path do %>
+      <% fa_icon "pencil" %>
+    <% end %>
+  </h3>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Email</th>
+        <td><%= current_artist.email %></td>
+      </tr>
+      <tr>
+        <th>About</th>
+        <td><%= current_artist.about %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h5>My Posts</h5>
+  <%= link_to "New Post", new_artist_module_post_path, class: "btn btn-sm btn-primary" %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Date Published</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <th><%= post.id %></th>
+          <td><%= link_to post.title, artist_module_post_path(post) %></td>
+          <td>
+            <span class="badge rounded-pill bg-<%= post.published? ? "success" : "warning" %>">
+              <%= post.status.capitalize %>
+            </span>
+          </td>
+          <td><%= post.published_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
