@@ -10,6 +10,7 @@ module PinkTankApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.session_store :cookie_store, expire_after: 1.hour
     config.generators do |g|
       g.helper false
       g.assets false
