@@ -19,6 +19,12 @@
               <%= link_to "Logout", admin_logout_path, method: :delete, class: "nav-link" %>
             </li>
           <% end %>
+
+          <% if artist_logged_in? %>
+            <li class="nav_item">
+              <%= link_to "Logout", artist_module_logout_path, method: :delete, class: "nav-link" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>

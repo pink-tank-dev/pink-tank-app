@@ -9,7 +9,7 @@
   </div>
   <div class="card-body">
     <h5>Artist Login</h5>
-    <%= form_with url: artist_login_path, method: :post do |form| %>
+    <%= form_with url: artist_module_login_path, method: :post do |form| %>
       <div class="row mb-2">
         <%= form.email_field :email, placeholder: "E-mail", class: "form-control" %>
       </div>
