@@ -5,7 +5,7 @@ module ArtistModule
 
       if @artist&.authenticate(params[:password])
         session[:artist_id] = @artist.id
-        redirect_to artist_posts_path
+        redirect_to artist_module_profile_path
       else
         flash[:warning] = 'Something went wrong! Make sure your email and password are correct.'
         redirect_to root_path
