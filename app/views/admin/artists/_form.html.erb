@@ -6,8 +6,12 @@
         <%= form.text_field :name, class: "form-control" %>
       </div>
       <div class="form-group mt-1 mb-1">
+        <%= form.label :email %>
+        <%= form.email_field :email, class: "form-control" %>
+      </div>
+      <div class="form-group mt-1 mb-1">
         <%= form.label :about %>
-        <%= form.text_area :about, class: "form-control" %>
+        <%= form.text_area :about, size: "30x10",class: "form-control" %>
       </div>
     </div>
   </div>
