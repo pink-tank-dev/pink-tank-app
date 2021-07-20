@@ -1,7 +1,8 @@
 module Admin
   class PostsController < ApplicationController
+    include ActiveStorage::SetCurrent
     before_action :set_artist
-    before_action :set_post, only: %i[edit update show]
+    before_action :set_post, only: %i[show unpublish]
 
     PUBLISH = "Publish".freeze
     UNPUBLISH = "Unpublish".freeze
@@ -11,46 +12,12 @@ module Admin
       @posts = @artist.posts.with_rich_text_body.order(created_at: :asc)
     end
 
-    def new
-      @post = Post.new
-    end
-
-    def create
-      @post = Post.new(post_params.merge(artist_id: @artist.id))
-
-      @post.assign_attributes(status: :published, published_at: Time.current) if publishing?
-
-      if @post.save
-        _path = @post.draft? ? admin_artist_post_path(@artist, @post) : admin_artist_posts_path(@artist)
-        message = @post.draft? ? "created" : "published"
-        redirect_to _path, success: "#{@post.title} successfully #{message}."
-      else
-        flash[:danger] = post_errors
-        render :new
-      end
-    end
-
-    def edit; end
-    
-    def update
-      if unpublishing?
-        @post.assign_attributes(status: :draft, published_at: nil)
-      else
-        @post.assign_attributes(post_params)
-        @post.assign_attributes(status: :published, published_at: Time.current) if publishing?
-      end
-
-      if @post.save
-        _path = @post.draft? ? admin_artist_post_path(@artist, @post) : admin_artist_posts_path(@artist)
-        message = @post.draft? ? "updated" : "published"
-        redirect_to _path, success: "#{@post.title} successfully #{message}."
-      else
-        flash[:danger] = post_errors
-        render :edit
-      end
-    end
-
     def show; end
+
+    def unpublish
+      @post.update(status: :draft, published_at: nil)
+      redirect_to admin_artist_posts_path(@artist, @post)
+    end
 
     private
 
