@@ -1,5 +1,6 @@
 module ArtistModule
   class PostsController < ::ApplicationController
+    include ActiveStorage::SetCurrent
     before_action :set_post, only: %i[edit update show]
     PUBLISH = "Publish".freeze
     UNPUBLISH = "Unpublish".freeze
@@ -34,7 +35,7 @@ module ArtistModule
       end
 
       if @post.save
-        _path = @post.draft? ? artist_module_post_path(@post) : artist_module_profile_path
+        _path = @post.draft? ? edit_or_show? : artist_module_profile_path
         message = @post.draft? ? "updated" : "published"
         redirect_to _path, success: "#{@post.title} successfully #{message}."
       else
@@ -65,6 +66,14 @@ module ArtistModule
 
     def unpublishing?
       params[:commit] == UNPUBLISH
+    end
+
+    def edit_or_show?
+      if @post.saved_changes[:status]&.first == "published" && @post.saved_changes[:status]&.second == "draft"
+        edit_artist_module_post_path(@post)
+      else
+        artist_module_post_path(@post)
+      end
     end
   end
 end
