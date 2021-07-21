@@ -20,7 +20,7 @@ default: &default
   host: <%= ENV['PINK_TANK_HOST'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: pink_tank_app
+  username: <%= ENV['PINK_TANK_DB_USERNAME'] %>
   password: <%= ENV['PINK_TANK_DB_PASSWORD'] %>
 
 development:
