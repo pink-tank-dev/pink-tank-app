@@ -45,7 +45,7 @@ module Admin
     end
 
     def artist_params
-      params.require(:artist).permit(:name, :email, :about)
+      params.require(:artist).permit(:name, :email, :instagram, :about, :statement)
     end
 
     def artist_errors
