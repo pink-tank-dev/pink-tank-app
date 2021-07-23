@@ -1,6 +1,7 @@
 module Admin
   class ArtistsController < ApplicationController
     before_action :set_artist, except: %i[index new create]
+
     def index
       @artists = Artist.all
     end
@@ -44,7 +45,7 @@ module Admin
     end
 
     def artist_params
-      params.require(:artist).permit(:name, :about)
+      params.require(:artist).permit(:name, :email, :about)
     end
 
     def artist_errors
