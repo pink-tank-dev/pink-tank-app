@@ -14,8 +14,29 @@
             <td><%= current_artist.email %></td>
           </tr>
           <tr>
+            <th>Instagram</th>
+            <td><%= current_artist.instagram %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+      <table class="table table-md table-borderless">
+        <tbody>
+          <tr>
             <th>About</th>
-            <td><%= current_artist.about %></td>
+            <td>
+              <p><%= current_artist.about %></p>
+            </td>
+          </tr>
+          <tr>
+            <th>Statement</th>
+            <td>
+              <p><%= current_artist.statement %></p>
+            </td>
           </tr>
         </tbody>
       </table>
