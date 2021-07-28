@@ -8,6 +8,7 @@ namespace :admin do
     end
   end
   resources :artists, except: %i[destroy] do
+    put 'reset_password', on: :member
     resources :posts, only: %i[index show] do
       put 'unpublish', on: :member
     end

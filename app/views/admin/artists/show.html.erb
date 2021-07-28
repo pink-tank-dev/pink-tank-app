@@ -1,21 +1,49 @@
 <div class="container mt-2 mb-2">
-  <h5>
+  <h4>
     <%= @artist.name %>
     <%= link_to edit_admin_artist_path(@artist) do %>
       <% fa_icon "pencil" %>
     <% end %>
-  </h5>
+  </h4>
+
   <div class="row">
-    <div class="col-4">
-      <table class="table table-borderless">
+    <div class="col-3">
+      <table class="table table-sm table-borderless">
         <tbody>
+          <% if @artist.avatar.attached? %>
+            <tr>
+              <th>Profile picture</th>
+              <td><%= image_tag @artist.avatar.variant(resize: "100x100") %></td>
+            </tr>
+          <% end %>
           <tr>
             <th>Email</th>
             <td><%= @artist.email %></td>
           </tr>
           <tr>
+            <th>Instagram</th>
+            <td><%= @artist.instagram %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+      <table class="table table-md table-borderless">
+        <tbody>
+          <tr>
             <th>About</th>
-            <td><%= @artist.about %></td>
+            <td>
+              <p><%= @artist.about %></p>
+            </td>
+          </tr>
+          <tr>
+            <th>Statement</th>
+            <td>
+              <p><%= @artist.statement %></p>
+            </td>
           </tr>
         </tbody>
       </table>

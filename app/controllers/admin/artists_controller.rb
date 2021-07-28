@@ -3,7 +3,7 @@ module Admin
     before_action :set_artist, except: %i[index new create]
 
     def index
-      @artists = Artist.all
+      @artists = Artist.all.order(id: :asc)
     end
 
     def new
@@ -11,7 +11,7 @@ module Admin
     end
 
     def create
-      @artist = Artist.new(artist_params)
+      @artist = Artist.new(artist_params.merge(password_params))
       if @artist.save
         redirect_to admin_artist_path(@artist), success: "#{@artist.name} successfully created."
       else
@@ -38,6 +38,10 @@ module Admin
       redirect_to artists_path, warning: "Artist not found." unless @artist.present?
     end
 
+    def reset_password
+      @artist.update(password_params)
+    end
+
     private
 
     def set_artist
@@ -45,7 +49,15 @@ module Admin
     end
 
     def artist_params
-      params.require(:artist).permit(:name, :email, :instagram, :about, :statement)
+      params.require(:artist).permit(:avatar, :name, :email, :instagram, :about, :statement)
+    end
+
+    def password_params
+      temporary_password = SecureRandom.hex(10)
+      {
+        password: temporary_password,
+        temporary_password: temporary_password
+      }
     end
 
     def artist_errors
