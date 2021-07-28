@@ -20,6 +20,7 @@ module PinkTankApp
     config.time_zone = 'Asia/Kuala_Lumpur'
     config.beginning_of_the_week = :sunday
     config.i18n.default_locale = :en
+    config.active_storage.variant_processor = :mini_magick
 
     # Configuration for the application, engines, and railties goes here.
     #
