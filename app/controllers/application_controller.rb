@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
   helper_method :user_logged_in?, :current_user, :artist_logged_in?, :current_artist
+
   def user_logged_in?
     !!session[:user_id]
   end
