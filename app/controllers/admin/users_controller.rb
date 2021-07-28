@@ -1,8 +1,9 @@
 module Admin
   class UsersController < ApplicationController
     before_action :set_user, except: %i[index new create]
+
     def index
-      @users = User.all
+      @users = User.all_except(current_user.id).order(id: :asc)
     end
 
     def new
@@ -10,7 +11,7 @@ module Admin
     end
 
     def create
-      @user = User.new(create_params)
+      @user = User.new(create_params.merge(password_params))
       if @user.save
         redirect_to admin_user_path(@user), success: "#{@user.name} successfully created."
       else
@@ -22,7 +23,6 @@ module Admin
     def edit
       redirect_to users_path, warning: "User not found." unless @user.present?
     end
-
 
     def update
       @user.assign_attributes(update_params)
@@ -39,7 +39,7 @@ module Admin
     end
 
     def update_password
-      @user.assign_attributes(update_params)
+      @user.assign_attributes(update_password_params)
       if @user.save
         redirect_to admin_user_path(@user), success: "Password successfully updated."
       else
@@ -64,6 +64,14 @@ module Admin
 
     def update_password_params
       params.require(:user).permit(:password, :password_confirmation)
+    end
+
+    def password_params
+      temporary_password = SecureRandom.hex(10)
+      {
+        password: temporary_password,
+        temporary_password: temporary_password
+      }
     end
 
     def set_user

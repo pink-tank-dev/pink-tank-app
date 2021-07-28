@@ -9,9 +9,6 @@
         <%= form.label :email %>
         <%= form.email_field :email, class: "form-control" %>
       </div>
-      <% if @user.new_record? %>
-        <%= render partial: 'password_fields', locals: { form: form } %>
-      <% end %>
     </div>
   </div>
   <%= form.submit @user.new_record? ? "Create User" : "Update User", class: "btn btn-primary" %>
