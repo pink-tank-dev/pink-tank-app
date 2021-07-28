@@ -3,7 +3,6 @@ module Admin
     include ActiveStorage::SetCurrent
     before_action :set_artist
     before_action :set_post, only: %i[show unpublish]
-
     PUBLISH = "Publish".freeze
     UNPUBLISH = "Unpublish".freeze
 
