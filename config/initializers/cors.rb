@@ -1,7 +1,16 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  if Rails.env.development?
+    allow do
+      origins '*'
+      resource '*',
+        headers: :any,
+        methods: [:get, :post, :patch, :put]
+    end
+  end
+
   if Rails.env.staging?
     allow do
-      origins 'https://pink-tank-react-staging.herokuapp.com'
+      origins '*'
       resource '/api/*',
         headers: :any,
         methods: [:get, :post, :patch, :put]
@@ -10,7 +19,9 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
   if Rails.env.production?
     allow do
-      origins 'https://pink-tank-react-production.herokuapp.com'
+      origins 'https://pink-tank-react-production.herokuapp.com',
+              'https://www.pinktank.art',
+              'https://pinktank.art'
       resource '/api/*',
         headers: :any,
         methods: [:get, :post, :patch, :put]
