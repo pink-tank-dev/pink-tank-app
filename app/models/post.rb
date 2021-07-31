@@ -19,4 +19,12 @@ class Post < ApplicationRecord
   validates :title, presence: true
   has_rich_text :body
   belongs_to :artist
+
+  def html
+    body.body.to_html
+  end
+
+  def html_with_layout
+    body.body.to_rendered_html_with_layout
+  end
 end
