@@ -1,10 +1,12 @@
 FactoryBot.define do
   factory :post do
     title { Faker::Book.title }
-    status { Post.status[:draft] }
+    status { Post.statuses[:draft] }
+    body { Faker::Lorem.paragraph }
+    published_at { DateTime.current }
 
-    trait :posted do
-      status { Post.status[:posted] }
+    trait :published do
+      status { Post.statuses[:published] }
     end
   end
 end
