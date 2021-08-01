@@ -1,7 +1,7 @@
 # Preview all emails at http://localhost:5000/rails/mailers/contact_us_mailer
 class ContactUsMailerPreview < ActionMailer::Preview
-  def contact_us
-    ContactUsMailer.with(contact_us_params).contact_us
+  def send_email
+    ContactUsMailer.with(contact_us_params).send_email
   end
 
   private
