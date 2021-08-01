@@ -10,8 +10,8 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "bootstrap/dist/js/bootstrap"
-import "bootstrap/dist/css/bootstrap"
+import "bootstrap/dist/js/bootstrap.min.js"
+import "bootstrap/dist/css/bootstrap.min.css"
 import "trix/dist/trix.css";
 import "trix/dist/trix.js";
 
