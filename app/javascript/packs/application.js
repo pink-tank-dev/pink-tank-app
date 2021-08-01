@@ -3,7 +3,7 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("trix")
+// require("trix")
 require("@rails/actiontext")
 import "controllers"
 import Rails from "@rails/ujs"
