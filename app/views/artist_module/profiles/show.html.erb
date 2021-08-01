@@ -1,9 +1,7 @@
 <div class="container mt-2 mb-2">
   <h4>
     <%= current_artist.name %>
-    <%= link_to edit_artist_module_profile_path do %>
-      <% fa_icon "pencil" %>
-    <% end %>
+    <%= link_to "Edit", edit_artist_module_profile_path %>
   </h4>
   <% if current_artist.avatar.attached? %>
     <%= image_tag current_artist.avatar.variant(resize: "100x100") %>       

@@ -29,7 +29,6 @@ gem 'mini_magick', '~> 4.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'font-awesome-rails'
 gem 'jwt', '~> 2.2', '>= 2.2.3'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
