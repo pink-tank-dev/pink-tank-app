@@ -3,6 +3,9 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+require("trix")
+require("@rails/actiontext")
+import "controllers"
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
@@ -13,7 +16,3 @@ import "bootstrap/dist/css/bootstrap"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-require("trix")
-require("@rails/actiontext")
-import "controllers"
