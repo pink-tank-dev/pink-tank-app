@@ -12,6 +12,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap/dist/js/bootstrap"
 import "bootstrap/dist/css/bootstrap"
+import "trix/dist/trix.css";
+import "trix/dist/trix.js";
 
 Rails.start()
 Turbolinks.start()
