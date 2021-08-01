@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'sessions#new'
+  resource :embed, only: %i[update]
   draw :admin
   draw :artist_module
   draw :api

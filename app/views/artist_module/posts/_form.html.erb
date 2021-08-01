@@ -19,7 +19,7 @@
       <div class="col-8 mb-2">
         <div class="form-group mt-1 mb-1">
           <%= form.label :body %>
-          <%= form.rich_text_area :body, class: "form-control" %>
+          <%= form.rich_text_area :body, class: "form-control", data: { controller: "trix-youtube-plugin" } %>
         </div>
       </div>
     <% end %>
