@@ -8,7 +8,7 @@ module Api
       end
 
       def show
-        @posts = @artist.posts.with_rich_text_body.published.order(published_at: :asc)
+        @posts = @artist.posts.with_rich_text_body_and_embeds.published.order(published_at: :asc)
       end
 
       private
