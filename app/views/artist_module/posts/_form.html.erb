@@ -1,4 +1,7 @@
 <%= form_with model: [:artist_module, @post], method: @post.new_record? ? :post : :put do |form| %>
+  <% if @post.published? %>
+    <%= form.submit "Unpublish", class: "btn btn-danger" %>
+  <% end %>
   <div class="row">
     <div class="col-3">
       <div class="form-group mt-1 mb-1">
@@ -24,9 +27,7 @@
       </div>
     <% end %>
   </div>
-  <% if @post.published? %>
-    <%= form.submit "Unpublish", class: "btn btn-danger" %>
-  <% else %>
+  <% unless @post.published? %>
     <%= form.submit "Save as Draft", class: "btn btn-link" %>
     <%= form.submit "Publish", class: "btn btn-primary" %>
   <% end %>

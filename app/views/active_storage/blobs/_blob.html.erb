@@ -4,7 +4,7 @@
   <% end %>
 
   <% if blob.video? %>
-    <%= video_tag blob.attachable.url,
+    <%= video_tag url_for(blob.attachable),
       preload: "auto",
       controls: true,
       width: "100%",

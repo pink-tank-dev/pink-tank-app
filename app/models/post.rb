@@ -20,15 +20,31 @@ class Post < ApplicationRecord
   has_rich_text :body
   belongs_to :artist
 
-  def to_string
-    body.body.to_s
+  def corrected_html
+    html = body.to_s
+    doc = Nokogiri::HTML(html)
+    attachments = doc.css("action-text-attachment")
+    return doc.to_s unless attachments.present?
+    correct_img_src_url(attachments)
+    correct_video_src_url(attachments)
+    doc.to_s
   end
 
-  def to_html
-    body.body.to_html
+  def correct_img_src_url(attachments)
+    attachments.each do |node|
+      url = node["url"]
+      img = node.css("img").first
+      next unless img.present?
+      img["src"] = url
+    end
   end
 
-  def to_html_with_layout
-    body.body.to_rendered_html_with_layout
+  def correct_video_src_url(attachments)
+    attachments.each do |node|
+      url = node["url"]
+      video = node.css("video").first
+      next unless video.present?
+      video["src"] = url
+    end
   end
 end
