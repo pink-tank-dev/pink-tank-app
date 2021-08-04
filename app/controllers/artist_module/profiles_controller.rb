@@ -1,5 +1,5 @@
 module ArtistModule
-  class ProfilesController < ::ApplicationController
+  class ProfilesController < ApplicationController
     before_action :set_artist, except: %i[show]
 
     def show

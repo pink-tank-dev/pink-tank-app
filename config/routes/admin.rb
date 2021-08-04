@@ -1,6 +1,4 @@
 namespace :admin do
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
   resources :users, except: %i[destroy] do
     member do
       get 'edit_password'

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   root to: 'sessions#new'
+  post 'login_user', to: 'sessions#login_user'
+  delete 'logout_user', to: 'sessions#logout_user'
+  post 'login_artist', to: 'sessions#login_artist'
+  delete 'logout_artist', to: 'sessions#logout_artist'
   resource :embed, only: %i[update]
   draw :admin
   draw :artist_module

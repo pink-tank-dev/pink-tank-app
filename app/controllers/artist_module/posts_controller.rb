@@ -1,5 +1,5 @@
 module ArtistModule
-  class PostsController < ::ApplicationController
+  class PostsController < ApplicationController
     include ActiveStorage::SetCurrent
     before_action :set_post, only: %i[edit update show]
     PUBLISH = "Publish".freeze
