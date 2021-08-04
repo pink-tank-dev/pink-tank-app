@@ -28,13 +28,21 @@ module ArtistModule
     
     def update
       if unpublishing?
-        @post.assign_attributes(status: :draft, published_at: nil)
+        @post.assign_attributes(status: :draft)
       else
         @post.assign_attributes(post_params)
-        @post.assign_attributes(status: :published, published_at: Time.current) if publishing?
+        if publishing?
+          if @post.published_at.present?
+            @post.assign_attributes(status: :published)
+          else
+            @post.assign_attributes(status: :published, published_at: Time.current)
+          end
+        end
+        
       end
 
-      if @post.save
+      if @post.valid?
+        @post.save
         _path = @post.draft? ? edit_or_show? : artist_module_profile_path
         message = @post.draft? ? "updated" : "published"
         redirect_to _path, success: "#{@post.title} successfully #{message}."
