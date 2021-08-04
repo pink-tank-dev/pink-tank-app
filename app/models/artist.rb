@@ -18,5 +18,5 @@ class Artist < ApplicationRecord
   has_one_attached :avatar
   has_many :posts
 
-  validates :name, :email, :about, presence: true
+  validates :name, :email, :about, :statement, :instagram, presence: true
 end
