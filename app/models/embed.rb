@@ -5,6 +5,9 @@ class Embed
   include ActionText::Attachable
   YT_EMBED = "youtube.com/embed".freeze
   YT_WATCH = "youtube.com/watch".freeze
+  SPOTIFY_TRACK = "spotify.com/track".freeze
+  SPOTIFY_ALBUM = "spotify.com/album".freeze
+  SPOTIFY_PLAYLIST = "spotify.com/playlist".freeze
   VIMEO = "vimeo.com".freeze
 
   attribute :id
@@ -23,6 +26,15 @@ class Embed
     when id.include?(VIMEO)
       param = id.split('/').last
       "https://player.vimeo.com/video/#{param}"
+    when id.include?(SPOTIFY_TRACK)
+      param = URI(id).path.split('/').last
+      "https://open.spotify.com/embed/track/#{param}"
+    when id.include?(SPOTIFY_ALBUM)
+      param = URI(id).path.split('/').last
+      "https://open.spotify.com/embed/album/#{param}"
+    when id.include?(SPOTIFY_PLAYLIST)
+      param = URI(id).path.split('/').last
+      "https://open.spotify.com/embed/playlist/#{param}"
     else
       id
     end
