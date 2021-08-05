@@ -66,6 +66,21 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "pink_tank_app_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {
+    host: "pink-tank-app-#{Rails.env}.herokuapp.com",
+    protocol: "https"
+  }
+
+  config.action_mailer.smtp_settings = {
+    address: ENV["AWS_SES_SERVER"],
+    port: 587,
+    user_name: ENV["AWS_SES_USERNAME"],
+    password: ENV["AWS_SES_PASSWORD"],
+    authentication: :login,
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
