@@ -8,15 +8,15 @@ RSpec.describe ContactUsMailer, type: :mailer do
     let(:message) { "Test message" }
     let(:mail) do
       described_class.send_email(name: name,
-                                email: email,
-                                subject: subject,
-                                message: message)
+                                 email: email,
+                                 subject: subject,
+                                 message: message)
     end
     let(:to) { ["pinktankcollective@gmail.com"] }
 
     it { expect(mail.subject).to eq(subject) }
     it { expect(mail.to).to eq(to) }
-    it { expect(mail.from).to eq([email]) }
+    it { expect(mail.reply_to).to eq([email]) }
     it { expect(mail.body.encoded).to match(message) }
   end
 end

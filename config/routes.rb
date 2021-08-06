@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   draw :admin
   draw :artist_module
   draw :api
+  draw :sidekiq
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
