@@ -31,6 +31,8 @@ gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jwt', '~> 2.2', '>= 2.2.3'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+gem 'redis-namespace', '~> 1.8', '>= 1.8.1'
+gem 'sidekiq', '~> 6.2', '>= 6.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

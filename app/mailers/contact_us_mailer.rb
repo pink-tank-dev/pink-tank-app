@@ -1,8 +1,7 @@
 class ContactUsMailer < ApplicationMailer
-  default to: 'pinktankcollective@gmail.com'
   def send_email(name:, email:, subject:, message:)
     @message = message
-    mail(from: "#{name} <#{email}>",
+    mail(reply_to: email_address_with_name(email, name),
          subject: subject,
          template_path: 'mailers/contact_us_mailer',
          template_name: 'contact_us')
