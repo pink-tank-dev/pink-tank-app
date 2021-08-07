@@ -5,7 +5,8 @@ class ArtistsMailer < ApplicationMailer
 
   def send_welcome_email(temporary_password:)
     @temporary_password = temporary_password
-    
+    filename = 'Welcome To Pink Tank 2.0, Masa__Massa_ Di Hujung Digital.pdf'.freeze
+    attachments[filename] = File.read("./app/assets/pdfs/#{filename}")
     mail(to: email_address_with_name(@artist.email, @artist.name),
          subject: 'Welcome to Pink Tank!',
          template_name: 'welcome_email')
