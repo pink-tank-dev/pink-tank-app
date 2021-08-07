@@ -27,6 +27,7 @@ class Post < ApplicationRecord
     return doc.to_s unless attachments.present?
     correct_img_src_url(attachments)
     correct_video_src_url(attachments)
+    correct_audio_src_url(attachments)
     doc.to_s
   end
 
@@ -45,6 +46,15 @@ class Post < ApplicationRecord
       video = node.css("video").first
       next unless video.present?
       video["src"] = url
+    end
+  end
+
+  def correct_audio_src_url(attachments)
+    attachments.each do |node|
+      url = node["url"]
+      audio = node.css("audio").first
+      next unless audio.present?
+      audio["src"] = url
     end
   end
 end
