@@ -1,14 +1,24 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
-  <% if blob.image? %>
-    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768]) %>
-  <% end %>
 
   <% if blob.video? %>
     <%= video_tag url_for(blob.attachable),
       preload: "auto",
       controls: true,
       width: "100%",
-      height: "100%" %>
+      height: "100%",
+      poster: url_for(blob.representation(resize_to_limit: [1024, 768])) %>
+  <% elsif blob.audio? %>
+    <%= audio_tag url_for(blob.attachable), 
+      autoplay: true,
+      controls: true %>
+  <% elsif blob.content_type == 'application/pdf' %>
+    <embed
+      src=<%= url_for(blob) %>
+      width="800"
+      height="500"
+      type="application/pdf">
+  <% elsif blob.representable? %>
+    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768]) %>
   <% end %>
 
   <figcaption class="attachment__caption">
