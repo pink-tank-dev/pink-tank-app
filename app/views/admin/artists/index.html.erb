@@ -17,10 +17,14 @@
               <th><%= artist.id %></th>
               <td><%= link_to artist.name, admin_artist_path(artist) %></td>
               <td>
-                <%= link_to "Posts", admin_artist_posts_path(artist), class: "btn btn-sm btn-primary mr-1" %>
+                <%= link_to "Posts", admin_artist_posts_path(artist),
+                    class: "btn btn-sm btn-primary mr-1" %>
                 <%= link_to "Reset password", reset_password_admin_artist_path(artist),
                     method: :put,
                     class: "btn btn-sm btn-primary mr-1" %>
+                <%= link_to "Send welcome e-mail", send_welcome_email_admin_artist_path(artist),
+                    method: :put,
+                    class: "btn btn-sm btn-success mr-1" %>
               </td>
             </tr>
           <% end %>

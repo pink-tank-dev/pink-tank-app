@@ -7,7 +7,10 @@ namespace :admin do
     end
   end
   resources :artists, except: %i[destroy] do
-    put 'reset_password', on: :member
+    member do
+      put 'reset_password'
+      put 'send_welcome_email'
+    end
     resources :posts, only: %i[index show] do
       put 'unpublish', on: :member
     end

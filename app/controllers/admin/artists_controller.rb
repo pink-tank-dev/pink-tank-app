@@ -13,8 +13,6 @@ module Admin
     def create
       @artist = Artist.new(artist_params.merge(password: temporary_password))
       if @artist.save
-        artists_mailer.send_welcome_email(temporary_password: temporary_password)
-                      .deliver_later
         redirect_to admin_artist_path(@artist), success: "#{@artist.name} successfully created."
       else
         flash[:danger] = artist_errors
@@ -43,6 +41,12 @@ module Admin
     def reset_password
       @artist.update(password: temporary_password)
       artists_mailer.send_reset_password_email(temporary_password: temporary_password)
+                    .deliver_later
+    end
+
+    def send_welcome_email
+      @artist.update(password: temporary_password)
+      artists_mailer.send_welcome_email(temporary_password: temporary_password)
                     .deliver_later
     end
 

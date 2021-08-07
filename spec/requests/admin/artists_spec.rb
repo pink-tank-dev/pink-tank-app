@@ -12,12 +12,17 @@ RSpec.describe "Artists", type: :request do
   end
 
   describe "POST /create" do
-    before { post admin_artists_path, params: { artist: artist_params } }
     let(:artist_params) do
       {
-        name: Faker::Name.name,
-        about: Faker::Quote.yoda
+        name: Faker::Artist.name,
+        about: Faker::Quote.yoda,
+        email: Faker::Internet.email,
+        statement: Faker::Quotes::Shakespeare.hamlet_quote,
+        password: Faker::Internet.password,
+        instagram: Faker::Internet.username
       }
+    end
+    before { post admin_artists_path, params: { artist: artist_params } }
     it { is_expected{ Artist.count }.to change_by(1) }
   end
 
@@ -40,5 +45,17 @@ RSpec.describe "Artists", type: :request do
     let(:artist) { create(:artist) }
     before { get admin_artist_path(artist) }
     it { expect(response).to have_http_status(:success) }
+  end
+
+  describe "PUT /reset_password" do
+    let(:artist) { create(:artist) }
+    before { put reset_password_admin_artist_path(artist) }
+    it { expect(response).to have_http_status(:success) }
+  end
+
+  describe "PUT /send_welcome_email" do
+    let(:artist) { create(:artist) }
+    before { put send_welcome_email_admin_artist_path(artist) }
+    it { expect(response).to have_http_status(:success)}
   end
 end
