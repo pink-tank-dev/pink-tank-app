@@ -25,36 +25,19 @@ class Post < ApplicationRecord
     doc = Nokogiri::HTML(html)
     attachments = doc.css("action-text-attachment")
     return doc.to_s unless attachments.present?
-    correct_img_src_url(attachments)
-    correct_video_src_url(attachments)
-    correct_audio_src_url(attachments)
+    correct_media_src_url(attachments, "img")
+    correct_media_src_url(attachments, "video")
+    correct_media_src_url(attachments, "audio")
+    correct_media_src_url(attachments, "embed")
     doc.to_s
   end
 
-  def correct_img_src_url(attachments)
+  def correct_media_src_url(attachments, media_type)
     attachments.each do |node|
       url = node["url"]
-      img = node.css("img").first
-      next unless img.present?
-      img["src"] = url
-    end
-  end
-
-  def correct_video_src_url(attachments)
-    attachments.each do |node|
-      url = node["url"]
-      video = node.css("video").first
-      next unless video.present?
-      video["src"] = url
-    end
-  end
-
-  def correct_audio_src_url(attachments)
-    attachments.each do |node|
-      url = node["url"]
-      audio = node.css("audio").first
-      next unless audio.present?
-      audio["src"] = url
+      media = node.css(media_type).first
+      next unless media.present?
+      media["src"] = url
     end
   end
 end

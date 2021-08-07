@@ -7,14 +7,12 @@
       width: "100%",
       height: "100%" %>
   <% elsif blob.audio? %>
-    <div style="display:block;margin-left:auto;margin-right:auto">
-      <%= audio_tag url_for(blob.attachable), 
-        autoplay: true,
-        controls: true %>
-    </div>
+    <%= audio_tag url_for(blob.attachable), 
+      autoplay: true,
+      controls: true %>
   <% elsif blob.content_type == 'application/pdf' %>
     <embed
-      src=<%= url_for(blob) %>
+      src=<%= url_for(blob.attachable) %>
       width="100%"
       height="500"
       type="application/pdf">
