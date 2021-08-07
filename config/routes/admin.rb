@@ -3,6 +3,7 @@ namespace :admin do
     member do
       get 'edit_password'
       put 'update_password'
+      put 'reset_password'
     end
   end
   resources :artists, except: %i[destroy] do

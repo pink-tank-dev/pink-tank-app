@@ -3,18 +3,20 @@
   <div class="row">
     <h4>
       <%= @user.name %>
-      <%= link_to "Edit", edit_admin_user_path(@user) %>
+      <% if current_user&.id == @user.id %>
+        <%= link_to "Edit", edit_admin_user_path(@user) %>
+      <% end %>
     </h4>
   </div>
   <div class="row">
     <div class="col-3">
-      <table class="table table-bordered">
+      <table class="table table-sm table-borderless">
         <tbody>
           <tr>
             <th>E-mail</th>
             <td><%= @user.email %></td>
           </tr>
-          <% unless Rails.env.development? && current_user&.id == @user.id %>
+          <% if current_user&.id == @user.id %>
             <tr>
               <th>Password</th>
               <td><%= link_to "Change Password", edit_password_admin_user_path %></td>
