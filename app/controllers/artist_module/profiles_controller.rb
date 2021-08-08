@@ -21,7 +21,7 @@ module ArtistModule
     end
 
     def update_password
-      @artist.assign_attributes(update_password_params.merge(temporary_password: nil))
+      @artist.assign_attributes(update_password_params)
       if @artist.save
         redirect_to artist_module_profile_path, success: "Password successfully updated."
       else
