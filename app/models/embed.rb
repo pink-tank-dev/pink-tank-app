@@ -8,6 +8,8 @@ class Embed
   SPOTIFY_TRACK = "spotify.com/track".freeze
   SPOTIFY_ALBUM = "spotify.com/album".freeze
   SPOTIFY_PLAYLIST = "spotify.com/playlist".freeze
+  SOUNDCLOUD_TRACK = "soundcloud.com/tracks".freeze
+  SOUNDCLOUD_PLAYLIST = "soundcloud.com/playlists".freeze
   VIMEO = "vimeo.com".freeze
 
   attribute :id
@@ -38,5 +40,25 @@ class Embed
     else
       id
     end
+  end
+
+  def video?
+    id.include?(YT_EMBED) || id.include?(YT_WATCH) || id.include?(VIMEO)
+  end
+
+  def spotify_track?
+    id.include?(SPOTIFY_TRACK)
+  end
+
+  def spotify_album_or_playlist?
+    id.include?(SPOTIFY_ALBUM) || id.include?(SPOTIFY_PLAYLIST)
+  end
+
+  def soundcloud_track?
+    id.include?(SOUNDCLOUD_TRACK)
+  end
+
+  def soundcloud_playlist?
+    id.include?(SOUNDCLOUD_PLAYLIST)
   end
 end
