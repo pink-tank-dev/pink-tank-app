@@ -3,7 +3,9 @@ module Admin
     before_action :set_artist, except: %i[index new create]
 
     def index
-      @artists = Artist.all.order(id: :asc)
+      @artists = Kaminari.paginate_array(Artist.all.order(id: :asc))
+                         .page(params[:page])
+                         .per(10)
     end
 
     def new

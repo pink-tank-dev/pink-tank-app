@@ -30,6 +30,8 @@ gem 'mini_magick', '~> 4.11'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jwt', '~> 2.2', '>= 2.2.3'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'redis-namespace', '~> 1.8', '>= 1.8.1'
 gem 'sidekiq', '~> 6.2', '>= 6.2.1'
