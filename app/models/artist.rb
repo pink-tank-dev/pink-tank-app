@@ -9,6 +9,7 @@
 #  name            :string
 #  password_digest :string
 #  statement       :text
+#  status          :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -18,4 +19,7 @@ class Artist < ApplicationRecord
   has_many :posts
 
   validates :name, :email, :about, :statement, :instagram, presence: true
+  validates :status, presence: true
+
+  enum status: %i[active inactive]
 end
