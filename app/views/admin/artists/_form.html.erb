@@ -20,6 +20,10 @@
           <%= form.text_field :instagram, class: "form-control" %>
         </div>
       </div>
+      <div class="form-group mt-1 mb-1">
+        <%= form.label :status %>
+        <%= form.select :status, Artist.statuses.map {|k, _| [k.capitalize, k]}, {}, class: "form-select" %>
+      </div>
     </div>
   </div>
   <div class="row">

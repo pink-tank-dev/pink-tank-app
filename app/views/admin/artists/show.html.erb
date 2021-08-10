@@ -1,8 +1,12 @@
 <div class="container mt-2 mb-2">
-  <h4>
-    <%= @artist.name %>
-    <%= link_to "Edit", edit_admin_artist_path(@artist) %>
-  </h4>
+
+  <h4><%= @artist.name %></h4>
+  <%= link_to "Edit", edit_admin_artist_path(@artist) %>
+  <div>
+    <span class="badge rounded-pill bg-<%= @artist.badge_type %>">
+      <%= @artist.status.humanize %>
+    </span>
+  </div>
 
   <div class="row">
     <div class="col-3">

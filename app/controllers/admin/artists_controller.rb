@@ -3,7 +3,8 @@ module Admin
     before_action :set_artist, except: %i[index new create]
 
     def index
-      @artists = Kaminari.paginate_array(Artist.all.order(id: :asc))
+      artists = ArtistPresenter.from_list(Artist.all.order(id: :asc))
+      @artists = Kaminari.paginate_array(artists)
                          .page(params[:page])
                          .per(10)
     end
@@ -38,6 +39,7 @@ module Admin
 
     def show
       redirect_to artists_path, warning: "Artist not found." unless @artist.present?
+      @artist = ArtistPresenter.new(@artist)
     end
 
     def reset_password
@@ -59,7 +61,14 @@ module Admin
     end
 
     def artist_params
-      params.require(:artist).permit(:avatar, :name, :email, :instagram, :about, :statement)
+      params.require(:artist)
+            .permit(:avatar,
+                    :name,
+                    :email,
+                    :instagram,
+                    :about,
+                    :statement,
+                    :status)
     end
 
     def temporary_password
