@@ -14,7 +14,8 @@ module ArtistModule
 
       @post.assign_attributes(status: :published, published_at: Time.current) if publishing?
 
-      if @post.save
+      if @post.valid?
+        @post.save
         _path = @post.draft? ? artist_module_post_path(@post) : artist_module_profile_path
         message = @post.draft? ? "created" : "published"
         redirect_to _path, success: "#{@post.title} successfully #{message}."
@@ -38,7 +39,6 @@ module ArtistModule
             @post.assign_attributes(status: :published, published_at: Time.current)
           end
         end
-        
       end
 
       if @post.valid?
