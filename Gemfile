@@ -34,6 +34,8 @@ gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'redis-namespace', '~> 1.8', '>= 1.8.1'
+gem 'sentry-ruby', '~> 4.6', '>= 4.6.4'
+gem 'sentry-rails', '~> 4.6', '>= 4.6.4'
 gem 'sidekiq', '~> 6.2', '>= 6.2.1'
 
 group :development, :test do
