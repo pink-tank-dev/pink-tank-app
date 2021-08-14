@@ -29,6 +29,7 @@ gem 'mini_magick', '~> 4.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'cocoon', '~> 1.2', '>= 1.2.15'
 gem 'jwt', '~> 2.2', '>= 2.2.3'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
