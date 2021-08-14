@@ -1,0 +1,14 @@
+<div class="nested-fields">
+  <div class="form-group mt-1 mb-1">
+    <%= f.label :medium %>
+    <%= f.select :medium, SocialMedium.media.map { |k, _| [k.capitalize, k] }, {}, class: "form-select" %>
+  </div>
+  <div class="form-group mt-1 mb-1">
+    <%= f.label :handle %>
+    <div class="input-group">
+      <span class="input-group-text">@</span>
+      <%= f.text_field :handle, class: "form-control" %>
+    </div>
+  </div>
+  <%= link_to_remove_association "Remove", f, class: "btn btn-sm btn-danger mb-1" %>
+</div>

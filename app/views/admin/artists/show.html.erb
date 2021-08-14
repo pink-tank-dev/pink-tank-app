@@ -8,27 +8,37 @@
     </span>
   </div>
 
+  <% if @artist.avatar.attached? %>
+    <%= image_tag @artist.avatar.variant(resize: "100x100") %>
+  <% end %>
+
   <div class="row">
     <div class="col-3">
+      <h5>Basic Info</h5>
       <table class="table table-sm table-borderless">
-        <tbody>
-          <% if @artist.avatar.attached? %>
-            <tr>
-              <th>Profile picture</th>
-              <td><%= image_tag @artist.avatar.variant(resize: "100x100") %></td>
-            </tr>
-          <% end %>
+        <tbody>      
           <tr>
             <th>Email</th>
             <td><%= @artist.email %></td>
           </tr>
-          <tr>
-            <th>Instagram</th>
-            <td><%= @artist.instagram %></td>
-          </tr>
         </tbody>
       </table>
     </div>
+    <% if @artist.social_media.present? %>
+      <div class="col-3">
+        <h5>Social Media</h5>
+        <table class="table table-sm table-borderless">
+          <tbody>
+            <% @artist.social_media.order(medium: :asc).each do |social_medium| %>
+              <tr>
+                <th><%= social_medium.medium.humanize %></th>
+                <td><%= social_medium.handle %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
   </div>
 
   <div class="row">

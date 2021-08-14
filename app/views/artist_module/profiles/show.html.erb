@@ -10,20 +10,32 @@
     <%= link_to "Change password", edit_password_artist_module_profile_path %>
   </div>
   <div class="row">
-    <div class="col-4">
+    <div class="col-3">
+      <h5>Basic Info</h5>
       <table class="table table-sm table-borderless">
         <tbody>
           <tr>
             <th>Email</th>
             <td><%= current_artist.email %></td>
           </tr>
-          <tr>
-            <th>Instagram</th>
-            <td><%= current_artist.instagram %></td>
-          </tr>
         </tbody>
       </table>
     </div>
+    <% if current_artist.social_media.present? %>
+      <div class="col-3">
+        <h5>Social Media</h5>
+        <table class="table table-sm table-borderless">
+          <tbody>
+            <% current_artist.social_media.order(medium: :asc).each do |social_medium| %>
+              <tr>
+                <th><%= social_medium.medium.humanize %></th>
+                <td><%= social_medium.handle %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
   </div>
 
   <div class="row">

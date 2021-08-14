@@ -11,7 +11,7 @@ module ArtistModule
     def edit_password; end
 
     def update
-      @artist.assign_attributes(update_params)
+      @artist.assign_attributes(artist_params)
       if @artist.save
         redirect_to artist_module_profile_path, success: "#{@artist.name} successfully updated."
       else
@@ -36,8 +36,20 @@ module ArtistModule
       @artist = Artist.find_by(id: current_artist.id)
     end
 
-    def update_params
-      params.require(:artist).permit(:avatar, :name, :email, :instagram, :about, :statement)
+    def artist_params
+      params.require(:artist).permit(
+        :avatar,
+        :name,
+        :email,
+        :instagram,
+        :about,
+        :statement,
+        social_media_attributes: [
+          :id,
+          :medium,
+          :handle,
+          :_destroy
+        ])
     end
 
     def update_password_params
