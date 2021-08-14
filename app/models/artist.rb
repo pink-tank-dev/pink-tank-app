@@ -17,8 +17,10 @@ class Artist < ApplicationRecord
   has_secure_password
   has_one_attached :avatar
   has_many :posts
+  has_many :social_media
+  accepts_nested_attributes_for :social_media, reject_if: :all_blank, allow_destroy: true
 
-  validates :name, :email, :about, :statement, :instagram, presence: true
+  validates :name, :email, :about, :statement, presence: true
   validates :status, presence: true
 
   enum status: %i[active inactive]
