@@ -61,14 +61,20 @@ module Admin
     end
 
     def artist_params
-      params.require(:artist)
-            .permit(:avatar,
-                    :name,
-                    :email,
-                    :instagram,
-                    :about,
-                    :statement,
-                    :status)
+      params.require(:artist).permit(
+        :avatar,
+        :name,
+        :email,
+        :instagram,
+        :about,
+        :statement,
+        :status,
+        social_media_attributes: [
+          :id,
+          :medium,
+          :handle,
+          :_destroy
+        ])
     end
 
     def temporary_password

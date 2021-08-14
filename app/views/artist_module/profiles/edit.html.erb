@@ -7,6 +7,7 @@
   <%= form_with model: @artist, url: artist_module_profile_path, method: :put do |form| %>
     <div class="row">
       <div class="col-3">
+        <h5>Basic Info</h5>
         <div class="form-group mt-1 mb-1">
           <%= form.label :avatar %>
           <%= form.file_field :avatar, class: "form-control" %>
@@ -19,11 +20,15 @@
           <%= form.label :email %>
           <%= form.email_field :email, class: "form-control" %>
         </div>
-        <div class="form-group mt-1 mb-1">
-          <%= form.label :instagram %>
-          <div class="input-group">
-            <span class="input-group-text" id="artist_instagram">@</span>
-            <%= form.text_field :instagram, class: "form-control" %>
+      </div>
+      <div class="col-3">
+        <h5>Social Media</h5>
+        <div id="social_media">
+          <%= form.fields_for :social_media do |social_medium| %>
+            <%= render "social_medium_fields", f: social_medium %>
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association 'Add', form, :social_media, class: "btn btn-sm btn-primary" %>
           </div>
         </div>
       </div>
