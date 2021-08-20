@@ -57,7 +57,7 @@ module ArtistModule
     private
 
     def set_post
-      @post = Post.find_by(id: params[:id])
+      @post = current_artist.posts.find_by(id: params[:id])
     end
 
     def post_params
