@@ -1,4 +1,4 @@
-module Requests
+module Helpers
   module ApiHelpers
     def json
       JSON.parse(response.body)
