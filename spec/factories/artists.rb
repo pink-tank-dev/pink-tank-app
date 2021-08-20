@@ -6,5 +6,6 @@ FactoryBot.define do
     about { Faker::Quote.yoda }
     statement { Faker::Quotes::Shakespeare.hamlet_quote }
     instagram { Faker::Internet.username }
+    status { Artist.statuses[:active] }
   end
 end
