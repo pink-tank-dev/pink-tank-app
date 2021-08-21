@@ -12,8 +12,9 @@ RSpec.describe "Admin::Series", type: :request do
   end
 
   describe "POST /create" do
-    let!(:exhibition) { create(:exhibition) }
-    let!(:artist) { create(:artist) }
+    let(:exhibition) { create(:exhibition) }
+    let(:artist) { create(:artist) }
+    let(:artwork) { create(:artwork, artist: artist) }
 
     before { post admin_exhibition_series_index_path(exhibition.id), params: series_params }
 
@@ -23,7 +24,8 @@ RSpec.describe "Admin::Series", type: :request do
           series: {
             title: Faker::Book.title,
             description: Faker::Lorem.paragraph,
-            artist_id: artist.id
+            artist_id: artist.id,
+            artwork_ids: [artwork.id]
           }
         }
       end
@@ -58,7 +60,8 @@ RSpec.describe "Admin::Series", type: :request do
   describe "GET /edit" do
     let(:artist) { create(:artist) }
     let(:exhibition) { create(:exhibition) }
-    let(:series) { create(:series, artist: artist, exhibition: exhibition) }
+    let(:artwork) { create(:artwork, artist: artist) }
+    let(:series) { create(:series, artist: artist, exhibition: exhibition, artworks: [artwork]) }
 
     before { get edit_admin_exhibition_series_path(exhibition.id, series.id) }
 
@@ -68,7 +71,8 @@ RSpec.describe "Admin::Series", type: :request do
   describe "PUT /update" do
     let(:artist) { create(:artist) }
     let(:exhibition) { create(:exhibition) }
-    let(:series) { create(:series, artist: artist, exhibition: exhibition) }
+    let(:artwork) { create(:artwork, artist: artist) }
+    let(:series) { create(:series, artist: artist, exhibition: exhibition, artworks: [artwork]) }
 
     before { put admin_exhibition_series_path(exhibition.id, series.id), params: series_params }
 
@@ -99,7 +103,7 @@ RSpec.describe "Admin::Series", type: :request do
       let(:series_params) do
         {
           series: {
-            artist_id: nil
+            title: nil
           }
         }
       end
@@ -111,7 +115,8 @@ RSpec.describe "Admin::Series", type: :request do
   describe "GET /show" do
     let(:artist) { create(:artist) }
     let(:exhibition) { create(:exhibition) }
-    let(:series) { create(:series, artist: artist, exhibition: exhibition) }
+    let(:artwork) { create(:artwork, artist: artist) }
+    let(:series) { create(:series, artist: artist, exhibition: exhibition, artworks: [artwork]) }
 
     before { get admin_exhibition_series_path(exhibition.id, series.id) }
 
