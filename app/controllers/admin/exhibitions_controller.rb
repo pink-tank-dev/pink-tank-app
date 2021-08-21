@@ -35,7 +35,7 @@ module Admin
 
     def show
       redirect_to admin_exhibitions_path, warning: "Exhibition not found." unless @exhibition.present?
-      @series = @exhibition.series
+      @series = @exhibition&.series
     end
 
     private

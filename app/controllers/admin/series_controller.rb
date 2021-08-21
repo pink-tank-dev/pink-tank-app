@@ -17,9 +17,7 @@ module Admin
       end
     end
 
-    def edit
-      redirect_to admin_exhibition_path(@exhibition.id) unless @series.present?
-    end
+    def edit; end
 
     def update
       @series.assign_attributes(series_params)
@@ -31,9 +29,7 @@ module Admin
       end
     end
 
-    def show
-      redirect_to admin_exhibition_path(@exhibition.id) unless @series.present?
-    end
+    def show; end
 
     private
 
@@ -43,6 +39,7 @@ module Admin
 
     def set_series
       @series = Series.includes(:artworks).find_by(id: params[:id])
+      redirect_to admin_exhibition_path(@exhibition.id) unless @series.present?
     end
 
     def series_params
