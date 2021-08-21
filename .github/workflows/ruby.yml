@@ -1,0 +1,61 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: CI
+
+on: [push]
+
+jobs:
+  specs:
+    runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: pink_tank_app
+          POSTGRES_PASSWORD: pink_tank_app
+          POSTGRES_DB: pink_tank_app_test
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        # tmpfs makes DB faster by using RAM
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+
+    env:
+      RAILS_ENV: test
+      GEMFILE_RUBY_VERSION: 3.0.1
+      PGHOST: localhost
+      PGUSER: postgres
+      TZ: "Asia/Kuala_Lumpur"
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Create DB
+        run: |
+          bin/rails db:prepare
+
+      - name: Run specs
+        run: |
+          bundle exec rspec
