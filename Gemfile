@@ -27,6 +27,7 @@ gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem 'mini_magick', '~> 4.11'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'actionpack-action_caching', '~> 1.2', '>= 1.2.2'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cocoon', '~> 1.2', '>= 1.2.15'
