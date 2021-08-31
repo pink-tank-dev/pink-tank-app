@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_14_043128) do
+ActiveRecord::Schema.define(version: 2021_08_28_043647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 2021_08_14_043128) do
     t.string "instagram"
     t.text "statement"
     t.integer "status"
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
