@@ -13,4 +13,12 @@
 class Exhibition < ApplicationRecord
   validates :title, :description, presence: true
   validates :start_at, :end_at, presence: true
+  validate :non_overlapping_dates, if: -> { start_at.present? && end_at.present? }
+
+  def non_overlapping_dates
+    if start_at.to_date > end_at.to_date
+      errors.add(:start_at, "overlaps end date")
+      errors.add(:end_at, "overlaps start date")
+    end
+  end
 end
