@@ -18,17 +18,18 @@
             <li class="nav-item">
               <%= link_to "Artists", admin_artists_path, class: "nav-link" %>
             </li>
-            <li class="nav_item">
-              <%= link_to "Logout", logout_user_path, method: :delete, class: "nav-link" %>
-            </li>
-          <% end %>
-
-          <% if artist_logged_in? %>
-            <li class="nav_item">
-              <%= link_to "Logout", logout_artist_path, method: :delete, class: "nav-link" %>
+            <li class="nav-item">
+              <%= link_to "Archive", admin_exhibitions_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>
+        <% if user_logged_in? %>
+          <%= link_to "Logout", logout_user_path, method: :delete, class: "btn btn-sm btn-danger" %>
+        <% end %>
+
+        <% if artist_logged_in? %>
+          <%= link_to "Logout", logout_artist_path, method: :delete, class: "btn btn-sm btn-danger" %>
+        <% end %>
       </div>
     </div>
   </nav>
