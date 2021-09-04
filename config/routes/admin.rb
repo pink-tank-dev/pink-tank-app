@@ -14,5 +14,6 @@ namespace :admin do
     resources :posts, only: %i[index show] do
       put 'unpublish', on: :member
     end
-  end  
+  end
+  resources :exhibitions, except: %i[destroy]
 end

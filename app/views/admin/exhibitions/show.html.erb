@@ -1,0 +1,34 @@
+<div class="container mt-2 mb-2">
+  <h4><%= @exhibition.title %></h4>
+  <%= link_to "Edit exhibition", edit_admin_exhibition_path(@exhibition) %>
+  <div class="row">
+    <div class="col-3">
+      <table class="table table-sm table-borderless">
+        <tbody>
+          <tr>
+            <th>Start date</th>
+            <td><%= @exhibition.start_at.strftime("%d %B %Y") %></td>
+          </tr>
+          <tr>
+            <th>End date</th>
+            <td><%= @exhibition.end_at.strftime("%d %B %Y") %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <table class="table table-sm table-borderless">
+        <tbody>
+          <tr>
+            <th>Description</th>
+            <td>
+              <p><%= @exhibition.description %></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
