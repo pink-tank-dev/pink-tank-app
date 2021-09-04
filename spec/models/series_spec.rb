@@ -1,0 +1,13 @@
+require 'rails_helper'
+
+RSpec.describe Series, type: :model do
+  describe "relations" do
+    it { should belong_to(:exhibition) }
+    it { should belong_to(:artist) }
+  end
+
+  describe "validations" do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:description) }
+  end
+end
