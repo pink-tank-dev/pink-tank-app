@@ -17,41 +17,132 @@ RSpec.describe "Artists", type: :request do
   end
 
   describe "POST /create" do
-    let(:artist_params) do
-      {
-        name: Faker::Artist.name,
-        about: Faker::Quote.yoda,
-        email: Faker::Internet.email,
-        statement: Faker::Quotes::Shakespeare.hamlet_quote,
-        password: Faker::Internet.password,
-        instagram: Faker::Internet.username,
-        status: :active
-      }
-    end
-    before { post admin_artists_path, params: { artist: artist_params } }
+    
+    before { post admin_artists_path, params: artist_params }
 
-    it { expect(Artist.last.name).to eq(artist_params[:name]) }
+    
+
+    context "valid params" do
+      let(:artist_params) do
+        {
+          artist: {
+            name: Faker::Artist.name,
+            about: Faker::Quote.yoda,
+            email: Faker::Internet.email,
+            statement: Faker::Quotes::Shakespeare.hamlet_quote,
+            password: Faker::Internet.password,
+            instagram: Faker::Internet.username,
+            status: :active
+          }
+        }
+      end
+
+      it { expect(Artist.last.name).to eq(artist_params[:artist][:name]) }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context "invalid params" do
+      let(:artist_params) do
+        {
+          artist: {
+            name: nil,
+            about: Faker::Quote.yoda,
+            email: Faker::Internet.email,
+            statement: Faker::Quotes::Shakespeare.hamlet_quote,
+            password: Faker::Internet.password,
+            instagram: Faker::Internet.username,
+            status: :active
+          }
+        }
+      end
+
+      it { expect(response.status).to eq(200) }
+    end
   end
 
   describe "GET /edit" do
-    let(:artist) { create(:artist) }
     before { get edit_admin_artist_path(artist.id) }
 
-    it { expect(response.status).to eq(200) }
+    context "artist exists" do
+      let(:artist) { create(:artist) }
+
+      it { expect(response.status).to eq(200) }
+    end
+
+    context "artist does not exist" do
+      let(:artist) { double(id: 300) }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
   end
 
   describe "PUT /update" do
     let(:artist) { create(:artist) }
-    before { put admin_artist_path(artist.id), params: { artist: { name: "Batman" } } }
+    before { put admin_artist_path(artist.id), params: artist_params }
     
-    it { expect(artist.reload.name).to eq("Batman") }
+
+    context "valid params" do
+      let(:artist_params) do
+        {
+          artist: {
+            name: "Batman"
+          }
+        }
+      end
+
+      it { expect(artist.reload.name).to eq("Batman") }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context "invalid params" do
+      let(:artist_params) do
+        {
+          artist: {
+            name: nil
+          }
+        }
+      end
+
+      it { expect(response.status).to eq(200) }
+    end
   end
 
   describe "GET /show" do
-    let(:artist) { create(:artist) }
     before { get admin_artist_path(artist.id) }
 
-    it { expect(response.status).to eq(200) }
+    context "artist exists" do
+      let(:artist) { create(:artist) }
+
+      it { expect(response.status).to eq(200) }
+    end
+
+    context "artist does not exist" do
+      let(:artist) { double(id: 300) }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
   end
 
   describe "PUT /reset_password" do

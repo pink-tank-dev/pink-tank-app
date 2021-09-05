@@ -11,9 +11,7 @@ namespace :admin do
       put 'reset_password'
       put 'send_welcome_email'
     end
-    resources :posts, only: %i[index show] do
-      put 'unpublish', on: :member
-    end
+    resources :posts, only: %i[index show]
   end
   resources :exhibitions, except: %i[destroy]
 end

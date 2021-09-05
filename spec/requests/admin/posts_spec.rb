@@ -5,18 +5,47 @@ RSpec.describe "Posts", type: :request do
   before { login_user(current_user) }
 
   describe "GET /index" do
-    let(:artist) { create(:artist) }
-    let(:posts) { create_list(:post, 3, artist: artist) }
     before { get admin_artist_posts_path(artist.id) }
 
-    it { expect(response.status).to eq(200) }
+    context "artist exists" do
+      let(:artist) { create(:artist) }
+      let!(:artist_posts) { create_list(:post, 3, artist: artist) }
+
+      it { expect(response.status).to eq(200) }
+    end
+
+    context "artist does not exist" do
+      let(:artist) { double(id: 300) }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
   end
 
   describe "GET /show" do
     let(:artist) { create(:artist) }
-    let(:artist_post) { create(:post, artist: artist) }
+
     before { get admin_artist_post_path(artist.id, artist_post.id) }
 
-    it { expect(response.status).to eq(200) }
+    context "post exists" do
+      let(:artist_post) { create(:post, artist: artist) }
+
+      it { expect(response.status).to eq(200) }
+    end
+
+    context "post does not exist" do
+      let(:artist_post) { double(id: 300) }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
   end
 end

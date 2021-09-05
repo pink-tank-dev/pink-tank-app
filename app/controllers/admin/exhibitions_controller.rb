@@ -19,7 +19,9 @@ module Admin
       end
     end
 
-    def edit; end
+    def edit
+      redirect_to admin_exhibitions_path, warning: "Exhibition not found." unless @exhibition.present?
+    end
 
     def update
       @exhibition.assign_attributes(exhibition_params)
@@ -31,7 +33,9 @@ module Admin
       end
     end
 
-    def show; end
+    def show
+      redirect_to admin_exhibitions_path, warning: "Exhibition not found." unless @exhibition.present?
+    end
 
     private
 

@@ -54,11 +54,24 @@ RSpec.describe "Exhibitions", type: :request do
   end
 
   describe "GET /edit" do
-    let(:exhibition) { create(:exhibition) }
-
     before { get edit_admin_exhibition_path(exhibition.id) }
 
-    it { expect(response.status).to eq(200) }
+    context "exhibition exists" do
+      let(:exhibition) { create(:exhibition) }
+
+      it { expect(response.status).to eq(200) }
+    end
+
+    context "exhibition does not exist" do
+      let(:exhibition) { double(id: 300) }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
   end
 
   describe "PUT /update" do
@@ -100,8 +113,23 @@ RSpec.describe "Exhibitions", type: :request do
   end
 
   describe "GET /show" do
-    let(:exhibition) { create(:exhibition) }
     before { get admin_exhibition_path(exhibition.id) }
-    it { expect(response.status).to eq(200) }
+
+    context "exhibition exists" do
+      let(:exhibition) { create(:exhibition) }
+
+      it { expect(response.status).to eq(200) }
+    end
+
+    context "exhibition does not exist" do
+      let(:exhibition) { double(id: 300) }
+
+      it do
+        expect(response.status).to eq(302)
+
+        follow_redirect!
+        expect(response.status).to eq(200)
+      end
+    end
   end
 end

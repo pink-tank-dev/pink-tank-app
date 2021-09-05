@@ -25,7 +25,9 @@ module ArtistModule
       end
     end
 
-    def edit; end
+    def edit
+      redirect_to artist_module_profile_path, warning: "Post not found." unless @post.present?
+    end
     
     def update
       if unpublishing?
@@ -52,7 +54,9 @@ module ArtistModule
       end
     end
 
-    def show; end
+    def show
+      redirect_to artist_module_profile_path, warning: "Post not found." unless @post.present?
+    end
 
     private
 
