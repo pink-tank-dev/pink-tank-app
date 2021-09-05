@@ -8,14 +8,16 @@ module Admin
 
     def index
       redirect_to admin_artists_path, warning: "Artist not found." unless @artist.present?
-      @posts = @artist.posts.with_rich_text_body_and_embeds.order(created_at: :asc)
+
+      @posts = if @artist.present?
+                 @artist.posts.with_rich_text_body_and_embeds.order(created_at: :asc)
+               else
+                 nil
+               end
     end
 
-    def show; end
-
-    def unpublish
-      @post.update(status: :draft, published_at: nil)
-      redirect_to admin_artist_posts_path(@artist, @post)
+    def show
+      redirect_to admin_artist_posts_path(@artist.id), warning: "Post not found." unless @post.present?
     end
 
     private

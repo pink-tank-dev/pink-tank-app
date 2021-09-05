@@ -10,6 +10,6 @@ RSpec.describe Post, type: :model do
   end
 
   describe "enums" do
-    it { should define_enum_for(:status).with_values(%i[draft posted]) }
+    it { should define_enum_for(:status).with_values(%i[draft published]) }
   end
 end

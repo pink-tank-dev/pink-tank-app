@@ -24,7 +24,7 @@ module Admin
     end
 
     def edit
-      redirect_to artists_path, warning: "Artist not found." unless @artist.present?
+      redirect_to admin_artists_path, warning: "Artist not found." unless @artist.present?
     end
     
     def update
@@ -38,7 +38,7 @@ module Admin
     end
 
     def show
-      redirect_to artists_path, warning: "Artist not found." unless @artist.present?
+      redirect_to admin_artists_path, warning: "Artist not found." unless @artist.present?
       @artist = ArtistPresenter.new(@artist)
     end
 
