@@ -1,0 +1,24 @@
+<h5>Series</h5>
+<%= link_to "New series", new_admin_exhibition_series_path(@exhibition.id) %>
+<div class="row">
+  <div class="col">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @series.each do |series| %>
+          <tr>
+            <th><%= series.id %></th>
+            <td><%= link_to series.title, admin_exhibition_series_path(@exhibition.id, series.id) %></td>
+            <td><%= series.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
