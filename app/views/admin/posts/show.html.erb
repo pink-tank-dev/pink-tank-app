@@ -2,9 +2,6 @@
   <%= link_to "#{@artist.name}'s Posts", admin_artist_posts_path(@artist) %>
   <h4>
     <%= @post.title %>
-    <% if @post.published? %>
-      <%= link_to "Unpublish", unpublish_admin_artist_post_path(@artist, @post), method: :put, class: "btn btn-sm btn-warning" %>
-    <% end %>
   </h4>
   <div class="row">
     <div class="col-8 border border-secondary">
