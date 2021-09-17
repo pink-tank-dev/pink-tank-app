@@ -20,4 +20,5 @@ class Series < ApplicationRecord
   belongs_to :artist
 
   validates :title, :description, presence: true
+  validates :exhibition, :artist, presence: true
 end

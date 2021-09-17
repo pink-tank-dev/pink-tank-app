@@ -13,5 +13,7 @@ namespace :admin do
     end
     resources :posts, only: %i[index show]
   end
-  resources :exhibitions, except: %i[destroy]
+  resources :exhibitions, except: %i[destroy] do
+    resources :series, except: %i[index destroy]
+  end
 end
