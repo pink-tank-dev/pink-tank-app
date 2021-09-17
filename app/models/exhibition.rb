@@ -11,6 +11,8 @@
 #  updated_at  :datetime         not null
 #
 class Exhibition < ApplicationRecord
+  has_many :series
+
   validates :title, :description, presence: true
   validates :start_at, :end_at, presence: true
   validate :non_overlapping_dates, if: -> { start_at.present? && end_at.present? }

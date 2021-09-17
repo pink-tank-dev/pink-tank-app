@@ -1,0 +1,60 @@
+module Admin
+  class SeriesController < ApplicationController
+    before_action :set_exhibition, except: %i[new]
+    before_action :set_series, except: %i[new create]
+
+    def new
+      @series = Series.new
+    end
+
+    def create
+      @series = Series.new(series_params.merge(exhibition: @exhibition))
+      if @series.save
+        redirect_to admin_exhibition_series_path(@exhibition.id, @series.id), success: "Series successfully created."
+      else
+        flash[:danger] = series_errors
+        render :new
+      end
+    end
+
+    def edit
+      redirect_to admin_exhibition_path(@exhibition.id) unless @series.present?
+    end
+
+    def update
+      @series.assign_attributes(series_params)
+      if @series.save
+        redirect_to admin_exhibition_series_path(@exhibition.id, @series.id), success: "Series successfully updated."
+      else
+        flash[:danger] = series_errors
+        render :edit
+      end
+    end
+
+    def show
+      redirect_to admin_exhibition_path(@exhibition.id) unless @series.present?
+    end
+
+    private
+
+    def set_exhibition
+      @exhibition = Exhibition.find_by(id: params[:exhibition_id])
+    end
+
+    def set_series
+      @series = Series.find_by(id: params[:id])
+    end
+
+    def series_params
+      params.require(:series).permit(
+        :title,
+        :description,
+        :artist_id
+      )
+    end
+
+    def series_errors
+      @series.errors.full_messages.join(', ')
+    end
+  end
+end
