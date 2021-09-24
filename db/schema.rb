@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_17_154948) do
+ActiveRecord::Schema.define(version: 2021_09_24_163939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,15 @@ ActiveRecord::Schema.define(version: 2021_09_17_154948) do
     t.index ["exhibition_id"], name: "index_series_on_exhibition_id"
   end
 
+  create_table "series_artworks", force: :cascade do |t|
+    t.bigint "series_id", null: false
+    t.bigint "artwork_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artwork_id"], name: "index_series_artworks_on_artwork_id"
+    t.index ["series_id"], name: "index_series_artworks_on_series_id"
+  end
+
   create_table "social_media", force: :cascade do |t|
     t.integer "medium"
     t.string "handle"
@@ -123,4 +132,6 @@ ActiveRecord::Schema.define(version: 2021_09_17_154948) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "series_artworks", "artworks"
+  add_foreign_key "series_artworks", "series"
 end
