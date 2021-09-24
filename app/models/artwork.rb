@@ -19,4 +19,6 @@ class Artwork < ApplicationRecord
   has_one_attached :file
 
   validates :file, :title, :description, presence: true
+
+  scope :by_artist, -> (id) { where(artist_id: id) }
 end
