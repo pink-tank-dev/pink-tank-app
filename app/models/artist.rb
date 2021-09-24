@@ -19,6 +19,8 @@ class Artist < ApplicationRecord
   has_one :series
   has_many :posts
   has_many :social_media
+  has_many :artworks
+
   accepts_nested_attributes_for :social_media, reject_if: :all_blank, allow_destroy: true
 
   validates :name, :email, :about, :statement, presence: true
