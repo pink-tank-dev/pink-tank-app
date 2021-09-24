@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'login_artist', to: 'sessions#login_artist'
   delete 'logout_artist', to: 'sessions#logout_artist'
   resource :embed, only: %i[update]
+  resources :artworks, only: %i[index]
   draw :admin
   draw :artist_module
   draw :api
