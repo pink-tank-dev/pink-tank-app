@@ -1,0 +1,38 @@
+<div class="container mt-2 mb-2">
+  <%= link_to "Back to Artist", admin_artist_path(@artist) %>
+  <%= link_to "Edit", edit_admin_artist_artwork_path(@artist, @artwork) %>
+  <h4><u><%= @artwork.title %></u></h4>
+  <figure class="attachment attachment--<%= @artwork.file.representable? ? "preview" : "file" %> attachment--<%= @artwork.file.filename.extension %>">
+    <% if @artwork.file.video? %>
+      <%= video_tag url_for(@artwork.file),
+        preload: "auto",
+        controls: true,
+        width: "100%",
+        height: "100%" %>
+    <% elsif @artwork.file.audio? %>
+      <%= audio_tag url_for(@artwork.file), 
+        autoplay: true,
+        controls: true %>
+    <% elsif @artwork.file.content_type == 'application/pdf' %>
+      <embed
+        src=<%= url_for(@artwork.file) %>
+        width="100%"
+        height="500"
+        type="application/pdf">
+    <% elsif @artwork.file.representable? %>
+      <%= image_tag @artwork.file.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768]) %>
+    <% end %>
+
+    <figcaption class="attachment__caption">
+      <% if caption = @artwork.file.try(:caption) %>
+        <%= caption %>
+      <% else %>
+        <span class="attachment__name">
+          <%= File.basename(@artwork.file.filename.to_s, @artwork.file.filename.extension_with_delimiter) %>
+        </span>
+      <% end %>
+    </figcaption>
+  </figure>
+  <h5><u>Description</u></h5>
+  <p><%= @artwork.description %></p>
+</div>
