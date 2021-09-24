@@ -74,7 +74,8 @@ module Admin
           :medium,
           :handle,
           :_destroy
-        ])
+        ]
+      )
     end
 
     def temporary_password
