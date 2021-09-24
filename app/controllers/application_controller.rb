@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
   def current_artist
     @current_artist ||= Artist.find_by(id: session[:artist_id]) if artist_logged_in?
   end
+
+  def error(message, status)
+    render json: { message: message, status: status }, status: status
+  end
 end
