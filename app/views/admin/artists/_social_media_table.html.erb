@@ -1,0 +1,13 @@
+<div class="col-3">
+  <h5>Social Media</h5>
+  <table class="table table-sm table-borderless">
+    <tbody>
+      <% @artist.social_media.order(medium: :asc).each do |social_medium| %>
+        <tr>
+          <th><%= social_medium.medium.humanize %></th>
+          <td><%= social_medium.handle %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
