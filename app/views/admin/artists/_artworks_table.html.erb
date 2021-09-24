@@ -1,0 +1,47 @@
+<div class="col">
+  <table class="table table-sm table-hover">
+    <thead>
+      <th>Preview</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @artist.artworks.each do |artwork| %>
+        <tr>
+          <td style="text-align:center">
+            <% if artwork.file.video? %>
+              <%= video_tag url_for(artwork.file),
+                preload: "auto",
+                width: "100px",
+                height: "100px" %>
+            <% elsif artwork.file.audio? %>
+              <%= audio_tag url_for(artwork.file), 
+                autoplay: true,
+                controls: true %>
+            <% elsif artwork.file.content_type == 'application/pdf' %>
+              <embed
+                src=<%= url_for(artwork.file) %>
+                width="100px"
+                height="100px"
+                type="application/pdf">
+            <% elsif artwork.file.representable? %>
+              <%= image_tag artwork.file.representation(resize_to_limit: [50, 50]) %>
+            <% end %>
+          </td>
+          <td><%= artwork.title %></td>
+          <td><%= artwork.description %></td>
+          <td style="text-align:center">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="actionsDropdown<%= artwork.id %>" data-bs-toggle="dropdown" aria-expanded="false">
+              Actions
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="actionsDropdown<%= artwork.id %>">
+              <%= link_to "Edit", edit_admin_artist_artwork_path(@artist, artwork), class: "dropdown-item" %>
+              <%= link_to "View", admin_artist_artwork_path(@artist, artwork), class: "dropdown-item" %>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
