@@ -25,19 +25,7 @@
       </table>
     </div>
     <% if @artist.social_media.present? %>
-      <div class="col-3">
-        <h5>Social Media</h5>
-        <table class="table table-sm table-borderless">
-          <tbody>
-            <% @artist.social_media.order(medium: :asc).each do |social_medium| %>
-              <tr>
-                <th><%= social_medium.medium.humanize %></th>
-                <td><%= social_medium.handle %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render partial: 'social_media_table' %>
     <% end %>
   </div>
 
@@ -61,4 +49,12 @@
       </table>
     </div>
   </div>
+
+  <h5>Artworks</h5>
+  <%= link_to "Add artwork", new_admin_artist_artwork_path(@artist), class: "btn btn-primary" %>
+  <% if @artist.artworks.present? %>
+    <div class="row mt-2 mb-2">
+      <%= render partial: 'artworks_table' %>
+    </div>
+  <% end %>
 </div>
