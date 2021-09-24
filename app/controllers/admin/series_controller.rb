@@ -49,7 +49,8 @@ module Admin
       params.require(:series).permit(
         :title,
         :description,
-        :artist_id
+        :artist_id,
+        artwork_ids: []
       )
     end
 

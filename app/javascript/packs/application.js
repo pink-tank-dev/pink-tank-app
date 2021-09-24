@@ -24,6 +24,8 @@ document.addEventListener("turbolinks:load", () => {
   flatpickr("[class='flatpickr']", { dateFormat: "d/m/Y" })
 })
 
+window.Rails = Rails;
+
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
