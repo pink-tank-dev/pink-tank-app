@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
+#  position    :integer
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -14,6 +15,8 @@
 #  index_artworks_on_artist_id  (artist_id)
 #
 class Artwork < ApplicationRecord
+  acts_as_list
+
   belongs_to :artist
 
   has_one_attached :file
