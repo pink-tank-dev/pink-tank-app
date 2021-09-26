@@ -16,4 +16,18 @@
       </table>
     </div>
   </div>
+  <div class="row">
+    <h5>Artworks</h5>
+    <div class="col-3">
+      <div data-controller="drag" data-drag-url="/artworks/:id/move">
+        <% @series.artworks.order(position: :asc).each do |artwork| %>
+          <div data-id="<%= artwork.id %>"class="card mb-2">
+            <div class="card-body">
+              <p class="card-text"><%= artwork.title %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
