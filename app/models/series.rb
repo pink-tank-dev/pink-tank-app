@@ -30,7 +30,7 @@ class Series < ApplicationRecord
 
   def artworks_belong_to_series_artist
     return if artworks.empty?
-    artist_ids = artworks.map(&:artist_id).compact
+    artist_ids = artworks.map(&:artist_id).compact.uniq
     unless artist_ids.length.eql?(1)
       errors.add(:base, "Series must have artwork that belongs to only 1 artist")
     end
