@@ -33,6 +33,26 @@
       <% end %>
     </figcaption>
   </figure>
-  <h5><u>Description</u></h5>
-  <p><%= @artwork.description %></p>
+  <div class="col-4">
+    <table class="table table-sm table-borderless">
+      <tbody>
+        <tr>
+          <th>Year</th>
+          <td><%= @artwork.created_at.strftime("%Y") %></td>
+        </tr>
+        <tr>
+          <th>Medium</th>
+          <td><%= @artwork.medium %></td>
+        </tr>
+        <tr>
+          <th>Measurements</th>
+          <td><%= @artwork.measurements %></td>
+        </tr>
+        <tr>
+          <th>Description</th>
+          <td><%= @artwork.description %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
