@@ -2,7 +2,7 @@ module Admin
   class ArtworksController < Admin::ApplicationController
     before_action :set_artist
     before_action :redirect_if_artist_not_found, only: %i[new edit show]
-    before_action :set_artwork, only: %i[edit show]
+    before_action :set_artwork, except: %i[index new create]
     before_action :redirect_if_artwork_not_found, only: %i[edit show]
 
     def new
@@ -55,7 +55,9 @@ module Admin
       params.require(:artwork).permit(
         :file,
         :title,
-        :description
+        :medium,
+        :measurements,
+        :description,
       )
     end
 

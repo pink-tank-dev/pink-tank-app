@@ -2,13 +2,15 @@
 #
 # Table name: artworks
 #
-#  id          :bigint           not null, primary key
-#  description :text
-#  position    :integer
-#  title       :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  artist_id   :bigint
+#  id           :bigint           not null, primary key
+#  description  :text
+#  measurements :string
+#  medium       :string
+#  position     :integer
+#  title        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  artist_id    :bigint
 #
 # Indexes
 #
@@ -22,6 +24,7 @@ class Artwork < ApplicationRecord
   has_one_attached :file
 
   validates :file, :title, :description, presence: true
+  validates :medium, :measurements, presence: true
 
   scope :by_artist, -> (id) { where(artist_id: id) }
 end
