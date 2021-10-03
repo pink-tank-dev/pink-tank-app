@@ -20,6 +20,13 @@
     </div>
     <div class="col-3">
       <div class="form-group mt-1 mb-1">
+        <%= form.label :price %>
+        <div class="input-group">
+          <span class="input-group-text">RM</span>
+          <%= form.text_field :price, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group mt-1 mb-1">
         <%= form.label :status %>
         <%= form.select :status, Artwork.statuses.map {|k, _| [k.capitalize, k]}, {}, class: "form-select" %>
       </div>
