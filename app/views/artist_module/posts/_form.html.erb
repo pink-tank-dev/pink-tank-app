@@ -4,7 +4,7 @@
   <% end %>
   <div class="row">
     <div class="col-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :title %>
         <%= form.text_field :title, class: "form-control", disabled: @post.published? %>
       </div>
@@ -13,14 +13,14 @@
   <div class="row">
     <% if @post.published? %>
       <div class="col-8 border border-secondary mb-2">
-        <div class="form-group mt-1 mb-1">
+        <div class="form-group my-1">
           <%= form.label :body %>
           <%= @post.body %>
         </div>
       </div>
     <% else %>
       <div class="col-8 mb-2">
-        <div class="form-group mt-1 mb-1">
+        <div class="form-group my-1">
           <%= form.label :body %>
           <%= form.rich_text_area :body, class: "form-control", data: { controller: "trix-embed" } %>
         </div>

@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, @exhibition], method: @exhibition.new_record? ? :post : :put do |form| %>
   <div class="row">
     <div class="col-lg-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :title %>
         <%= form.text_field :title, class: "form-control" %>
       </div>
@@ -9,13 +9,13 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :start_at %>
         <%= form.text_field :start_at, class: "flatpickr" %>
       </div>
     </div>
     <div class="col-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :end_at %>
         <%= form.text_field :end_at, class: "flatpickr" %>
       </div>
@@ -23,7 +23,7 @@
   </div>
   <div class="row">
     <div class="col-lg-5">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :description %>
         <%= form.text_area :description, size: "30x10", class: "form-control" %>
       </div>
