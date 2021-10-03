@@ -50,7 +50,9 @@ module Admin
         :medium,
         :measurements,
         :description,
-        :status
+        :status,
+        :notes,
+        :price
       )
     end
 
