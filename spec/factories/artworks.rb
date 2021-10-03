@@ -6,5 +6,6 @@ FactoryBot.define do
     description { Faker::Quote.yoda }
     medium { Faker::Color.color_name }
     measurements { Faker::Measurement.height }
+    status { Artwork.statuses[:available] }
   end
 end

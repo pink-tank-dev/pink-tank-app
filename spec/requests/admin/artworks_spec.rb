@@ -46,7 +46,8 @@ RSpec.describe "Artworks", type: :request do
             title: Faker::Book.title,
             description: Faker::Movies::BackToTheFuture.quote,
             medium: Faker::Color.color_name,
-            measurements: Faker::Measurement.height
+            measurements: Faker::Measurement.height,
+            status: :available
           }
         }
       end

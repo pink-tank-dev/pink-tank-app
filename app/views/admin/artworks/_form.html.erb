@@ -17,6 +17,10 @@
         <%= form.label :measurements %>
         <%= form.text_field :measurements, class: "form-control" %>
       </div>
+      <div class="form-group mt-1 mb-1">
+        <%= form.label :status %>
+        <%= form.select :status, Artwork.statuses.map {|k, _| [k.capitalize, k]}, {}, class: "form-select" %>
+      </div>
     </div>
   </div>
   <div class="row">
