@@ -7,6 +7,7 @@
 #  measurements :string
 #  medium       :string
 #  position     :integer
+#  status       :integer
 #  title        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -24,7 +25,9 @@ class Artwork < ApplicationRecord
   has_one_attached :file
 
   validates :file, :title, :description, presence: true
-  validates :medium, :measurements, presence: true
+  validates :medium, :measurements, :status, presence: true
+
+  enum status: %i[available sold]
 
   scope :by_artist, -> (id) { where(artist_id: id) }
 end
