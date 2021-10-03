@@ -1,4 +1,4 @@
-<div class="container mt-2 mb-2">
+<div class="container my-2">
 
   <h4><%= @artist.name %></h4>
   <%= link_to "Edit artist", edit_admin_artist_path(@artist), class: "btn btn-sm btn-secondary" %>
@@ -53,7 +53,7 @@
   <h5>Artworks</h5>
   <%= link_to "Add artwork", new_admin_artist_artwork_path(@artist), class: "btn btn-primary" %>
   <% if @artist.artworks.present? %>
-    <div class="row mt-2 mb-2">
+    <div class="row my-2">
       <%= render partial: 'artworks_table' %>
     </div>
   <% end %>
