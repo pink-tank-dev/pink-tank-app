@@ -6,6 +6,7 @@
 #  description  :text
 #  measurements :string
 #  medium       :string
+#  notes        :text
 #  position     :integer
 #  status       :integer
 #  title        :string
