@@ -1,9 +1,7 @@
 module Admin
   class ArtworksController < Admin::ApplicationController
     before_action :set_artist
-    before_action :redirect_if_artist_not_found, only: %i[new edit show]
     before_action :set_artwork, except: %i[index new create]
-    before_action :redirect_if_artwork_not_found, only: %i[edit show]
 
     def new
       @artwork = Artwork.new
@@ -37,18 +35,12 @@ module Admin
 
     def set_artist
       @artist = Artist.find_by(id: params[:artist_id])
-    end
-
-    def redirect_if_artist_not_found
       redirect_to admin_artists_path, warning: "Artist not found." unless @artist.present?
     end
 
     def set_artwork
       @artwork = Artwork.find_by(id: params[:id])
-    end
-
-    def redirect_if_artwork_not_found
-      redirect_to admin_artist_artworks_path(@artist), warning: "Artwork not found." unless @artwork.present?
+      redirect_to admin_artist_path(@artist), warning: "Artwork not found." unless @artwork.present?
     end
 
     def artwork_params
