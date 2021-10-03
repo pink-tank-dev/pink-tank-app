@@ -1,7 +1,7 @@
 <%= form_with model: @series, url: @series.new_record? ? admin_exhibition_series_index_path : admin_exhibition_series_path do |form| %>
   <div class="row">
     <div class="col-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :artist_id %>
         <%= form.select :artist_id, Artist.active.pluck(:name, :id), { prompt: "Select an artist" }, class: "form-select", disabled: @series.persisted? %>
       </div>
@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :title %>
         <%= form.text_field :title, class: "form-control" %>
       </div>
@@ -17,7 +17,7 @@
   </div>
   <div class="row">
     <div class="col-5">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :description %>
         <%= form.text_area :description, size: "30x10", class: "form-control", style: "resize: none" %>
       </div>
@@ -25,7 +25,7 @@
   </div>
   <div class="row">
     <div class="col-5">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :artworks %>
         <% if @series.persisted? %>
           <%= form.select :artwork_ids, @series.artist.artworks.pluck(:title, :id), {}, { multiple: true, class: "form-select" } %>

@@ -1,32 +1,32 @@
 <%= form_with model: [:admin, @artist, @artwork], method: @artwork.new_record? ? :post : :put do |form| %>
   <div class="row">
     <div class="col-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :file %>
         <%= form.file_field :file, class: "form-control" %>
       </div>
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :title %>
         <%= form.text_field :title, class: "form-control" %>
       </div>
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :medium %>
         <%= form.text_field :medium, class: "form-control" %>
       </div>
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :measurements %>
         <%= form.text_field :measurements, class: "form-control" %>
       </div>
     </div>
     <div class="col-3">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :price %>
         <div class="input-group">
           <span class="input-group-text">RM</span>
           <%= form.text_field :price, class: "form-control" %>
         </div>
       </div>
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :status %>
         <%= form.select :status, Artwork.statuses.map {|k, _| [k.capitalize, k]}, {}, class: "form-select" %>
       </div>
@@ -34,13 +34,13 @@
   </div>
   <div class="row">
     <div class="col-5">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :description %>
         <%= form.text_area :description, size: "30x10", class: "form-control", style: "resize: none" %>
       </div>
     </div>
     <div class="col-5">
-      <div class="form-group mt-1 mb-1">
+      <div class="form-group my-1">
         <%= form.label :notes %>
         <%= form.text_area :notes, size: "30x10", class: "form-control", style: "resize: none" %>
       </div>
