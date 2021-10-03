@@ -17,6 +17,8 @@
         <%= form.label :measurements %>
         <%= form.text_field :measurements, class: "form-control" %>
       </div>
+    </div>
+    <div class="col-3">
       <div class="form-group mt-1 mb-1">
         <%= form.label :status %>
         <%= form.select :status, Artwork.statuses.map {|k, _| [k.capitalize, k]}, {}, class: "form-select" %>
@@ -28,6 +30,12 @@
       <div class="form-group mt-1 mb-1">
         <%= form.label :description %>
         <%= form.text_area :description, size: "30x10", class: "form-control", style: "resize: none" %>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="form-group mt-1 mb-1">
+        <%= form.label :notes %>
+        <%= form.text_area :notes, size: "30x10", class: "form-control", style: "resize: none" %>
       </div>
     </div>
   </div>
