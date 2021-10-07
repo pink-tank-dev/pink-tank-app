@@ -42,7 +42,7 @@ module Admin
     end
 
     def set_series
-      @series = Series.find_by(id: params[:id])
+      @series = Series.includes(:artworks).find_by(id: params[:id])
     end
 
     def series_params
