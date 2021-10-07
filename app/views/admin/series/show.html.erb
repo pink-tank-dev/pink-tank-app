@@ -23,7 +23,31 @@
         <% @series.artworks.order(position: :asc).each do |artwork| %>
           <div data-id="<%= artwork.id %>"class="card mb-2">
             <div class="card-body">
-              <p class="card-text"><%= artwork.title %></p>
+              <div class="row">
+                <div class="col">
+                  <% if artwork.file.video? %>
+                    <%= video_tag url_for(artwork.file),
+                      preload: "auto",
+                      width: "100px",
+                      height: "100px" %>
+                  <% elsif artwork.file.audio? %>
+                    <%= audio_tag url_for(artwork.file), 
+                      autoplay: true,
+                      controls: true %>
+                  <% elsif artwork.file.content_type == 'application/pdf' %>
+                    <embed
+                      src=<%= url_for(artwork.file) %>
+                      width="100px"
+                      height="100px"
+                      type="application/pdf">
+                  <% elsif artwork.file.representable? %>
+                    <%= image_tag artwork.file.representation(resize_to_limit: [50, 50]) %>
+                  <% end %>
+                </div>
+                <div class="col">
+                  <p class="card-text"><%= artwork.title %></p>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
