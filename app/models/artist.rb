@@ -8,12 +8,20 @@
 #  instagram       :string
 #  name            :string
 #  password_digest :string
+#  slug            :string
 #  statement       :text
 #  status          :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+# Indexes
+#
+#  index_artists_on_slug  (slug) UNIQUE
+#
 class Artist < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_secure_password
   has_one_attached :avatar
   has_one :series
