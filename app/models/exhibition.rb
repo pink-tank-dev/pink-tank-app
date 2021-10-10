@@ -11,11 +11,16 @@
 #  updated_at  :datetime         not null
 #
 class Exhibition < ApplicationRecord
-  has_many :series
+  has_many :series, dependent: :destroy
+  has_many :artworks, through: :series
 
   validates :title, :description, presence: true
   validates :start_at, :end_at, presence: true
   validate :non_overlapping_dates, if: -> { start_at.present? && end_at.present? }
+
+  scope :active, -> do
+    where("start_at >= ? AND end_at <= ?", DateTime.current, DateTime.current)
+  end
 
   def non_overlapping_dates
     if start_at.to_date > end_at.to_date

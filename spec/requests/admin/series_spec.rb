@@ -59,6 +59,7 @@ RSpec.describe "Admin::Series", type: :request do
 
   describe "GET /edit" do
     let(:artist) { create(:artist) }
+    let(:artwork) { create(:artwork, artist: artist) }
     let(:exhibition) { create(:exhibition) }
     let(:artwork) { create(:artwork, artist: artist) }
     let(:series) { create(:series, artist: artist, exhibition: exhibition, artworks: [artwork]) }
@@ -74,7 +75,9 @@ RSpec.describe "Admin::Series", type: :request do
     let(:artwork) { create(:artwork, artist: artist) }
     let(:series) { create(:series, artist: artist, exhibition: exhibition, artworks: [artwork]) }
 
-    before { put admin_exhibition_series_path(exhibition.id, series.id), params: series_params }
+    before do
+      put admin_exhibition_series_path(exhibition.id, series.id), params: series_params
+    end
 
     context "valid params" do
       let(:series_params) do
@@ -121,5 +124,21 @@ RSpec.describe "Admin::Series", type: :request do
     before { get admin_exhibition_series_path(exhibition.id, series.id) }
 
     it { expect(response.status).to eq(200) }
+  end
+
+  describe "DELETE /destroy" do
+    let!(:artist) { create(:artist) }
+    let!(:artwork) { create(:artwork, artist: artist) }
+    let!(:exhibition) { create(:exhibition) }
+    let!(:series) { create(:series, artist: artist, exhibition: exhibition, artworks: [artwork]) }
+
+    before { delete admin_exhibition_series_path(exhibition.id, series.id) }
+
+    it do
+      expect(response.status).to eq(302)
+      follow_redirect!
+
+      expect(response.status).to eq(200)
+    end
   end
 end

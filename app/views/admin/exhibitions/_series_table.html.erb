@@ -9,6 +9,7 @@
           <th>Artist</th>
           <th>Title</th>
           <th>Description</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -16,8 +17,18 @@
           <tr>
             <th><%= series.id %></th>
             <td><%= series.artist.name %></td>
-            <td><%= link_to series.title, admin_exhibition_series_path(@exhibition.id, series.id) %></td>
+            <td><%= series.title %></td>
             <td><%= series.description %></td>
+            <td style="text-align:center">
+              <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="actionsDropdown<%= series.id %>" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="actionsDropdown<%= series.id %>">
+                <%= link_to "Edit", edit_admin_exhibition_series_path(@exhibition.id, series.id), class: "dropdown-item" %>
+                <%= link_to "View", admin_exhibition_series_path(@exhibition.id, series.id), class: "dropdown-item" %>
+                <%= link_to "Delete", admin_exhibition_series_path(@exhibition.id, series.id), method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
+              </ul>
+            </td>
           </tr>
         <% end %>
       </tbody>
