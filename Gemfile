@@ -33,6 +33,7 @@ gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cocoon', '~> 1.2', '>= 1.2.15'
 gem 'dalli', '~> 2.7', '>= 2.7.11'
+gem 'friendly_id', '~> 5.4.0'
 gem 'jwt', '~> 2.2', '>= 2.2.3'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
