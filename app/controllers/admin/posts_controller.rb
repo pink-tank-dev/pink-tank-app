@@ -23,7 +23,7 @@ module Admin
     private
 
     def set_artist
-      @artist = Artist.find_by(id: params[:artist_id])
+      @artist = Artist.friendly.find(params[:artist_id])
     end
 
     def set_post

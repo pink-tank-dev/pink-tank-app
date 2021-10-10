@@ -34,7 +34,7 @@ module Admin
     private
 
     def set_artist
-      @artist = Artist.find_by(id: params[:artist_id])
+      @artist = Artist.friendly.find(params[:artist_id])
       redirect_to admin_artists_path, warning: "Artist not found." unless @artist.present?
     end
 
