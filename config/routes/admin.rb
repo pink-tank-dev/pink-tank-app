@@ -15,6 +15,6 @@ namespace :admin do
     resources :artworks, except: %i[index]
   end
   resources :exhibitions, except: %i[destroy] do
-    resources :series, except: %i[index destroy]
+    resources :series, except: %i[index]
   end
 end

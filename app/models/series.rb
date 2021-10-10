@@ -19,7 +19,7 @@ class Series < ApplicationRecord
   belongs_to :exhibition
   belongs_to :artist
 
-  has_many :series_artworks
+  has_many :series_artworks, dependent: :destroy
   has_many :artworks, through: :series_artworks
 
   validates :title, :description, presence: true

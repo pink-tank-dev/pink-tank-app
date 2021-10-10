@@ -31,6 +31,12 @@ module Admin
 
     def show; end
 
+    def destroy
+      @series.destroy
+
+      redirect_to admin_exhibition_path(@exhibition.id), success: "Series successfully deleted."
+    end
+
     private
 
     def set_exhibition
