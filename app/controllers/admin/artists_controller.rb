@@ -57,7 +57,7 @@ module Admin
     private
 
     def set_artist
-      @artist = Artist.includes(:artworks).find_by(id: params[:id])
+      @artist = Artist.includes(:artworks).friendly.find(params[:id])
     end
 
     def artist_params
