@@ -21,22 +21,22 @@ RSpec.describe "Artworks", type: :request do
 
   describe "GET /new" do
     context "artist exists" do
-      before { get new_admin_artist_artwork_path(artist_id: artist.id) }
+      before { get new_admin_artist_artwork_path(artist_id: artist.friendly_id) }
 
       it_behaves_like "successful response"
     end
 
     context "artist does not exist" do
-      let(:artist) { double(id: 300) }
+      let(:artist) { double(friendly_id: 300) }
 
-      before { get new_admin_artist_artwork_path(artist_id: artist.id) }
+      before { get new_admin_artist_artwork_path(artist_id: artist.friendly_id) }
 
       it_behaves_like "successful redirect and response"
     end
   end
 
   describe "POST /create" do
-    before { post admin_artist_artworks_path(artist_id: artist.id), params: artwork_params }
+    before { post admin_artist_artworks_path(artist_id: artist.friendly_id), params: artwork_params }
 
     context "valid params" do
       let(:artwork_params) do
@@ -76,7 +76,7 @@ RSpec.describe "Artworks", type: :request do
   end
 
   describe "GET /edit" do
-    before { get edit_admin_artist_artwork_path(artist_id: artist.id, id: artwork.id) }
+    before { get edit_admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id) }
 
     context "artwork exists" do
       let!(:artwork) { create(:artwork) }
@@ -86,7 +86,7 @@ RSpec.describe "Artworks", type: :request do
       end
   
       context "artist does not exist" do
-        let(:artist) { double(id: 300) }
+        let(:artist) { double(friendly_id: 300) }
   
         it_behaves_like "successful redirect and response"
       end
@@ -100,7 +100,7 @@ RSpec.describe "Artworks", type: :request do
       end
   
       context "artist does not exist" do
-        let(:artist) { double(id: 300) }
+        let(:artist) { double(friendly_id: 300) }
   
         it_behaves_like "successful redirect and response"
       end
@@ -111,7 +111,7 @@ RSpec.describe "Artworks", type: :request do
     let!(:artwork) { create(:artwork, artist: artist) }
 
     before do
-      put admin_artist_artwork_path(artist_id: artist.id, id: artwork.id), params: artwork_params
+      put admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id), params: artwork_params
     end
 
     context "valid params" do
@@ -150,7 +150,7 @@ RSpec.describe "Artworks", type: :request do
   end
 
   describe "GET /show" do
-    before { get admin_artist_artwork_path(artist_id: artist.id, id: artwork.id) }
+    before { get admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id) }
 
     context "artwork exists" do
       let!(:artwork) { create(:artwork) }
@@ -160,7 +160,7 @@ RSpec.describe "Artworks", type: :request do
       end
   
       context "artist does not exist" do
-        let(:artist) { double(id: 300) }
+        let(:artist) { double(friendly_id: 300) }
   
         it_behaves_like "successful redirect and response"
       end
@@ -174,7 +174,7 @@ RSpec.describe "Artworks", type: :request do
       end
   
       context "artist does not exist" do
-        let(:artist) { double(id: 300) }
+        let(:artist) { double(friendly_id: 300) }
   
         it_behaves_like "successful redirect and response"
       end

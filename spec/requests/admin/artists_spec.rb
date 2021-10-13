@@ -67,7 +67,7 @@ RSpec.describe "Artists", type: :request do
   end
 
   describe "GET /edit" do
-    before { get edit_admin_artist_path(artist.id) }
+    before { get edit_admin_artist_path(artist.friendly_id) }
 
     context "artist exists" do
       let(:artist) { create(:artist) }
@@ -76,7 +76,7 @@ RSpec.describe "Artists", type: :request do
     end
 
     context "artist does not exist" do
-      let(:artist) { double(id: 300) }
+      let(:artist) { double(friendly_id: "noexist") }
 
       it do
         expect(response.status).to eq(302)
@@ -89,7 +89,7 @@ RSpec.describe "Artists", type: :request do
 
   describe "PUT /update" do
     let(:artist) { create(:artist) }
-    before { put admin_artist_path(artist.id), params: artist_params }
+    before { put admin_artist_path(artist.friendly_id), params: artist_params }
     
 
     context "valid params" do
@@ -125,7 +125,7 @@ RSpec.describe "Artists", type: :request do
   end
 
   describe "GET /show" do
-    before { get admin_artist_path(artist.id) }
+    before { get admin_artist_path(artist.friendly_id) }
 
     context "artist exists" do
       let(:artist) { create(:artist) }
@@ -134,7 +134,7 @@ RSpec.describe "Artists", type: :request do
     end
 
     context "artist does not exist" do
-      let(:artist) { double(id: 300) }
+      let(:artist) { double(friendly_id: "noexist") }
 
       it do
         expect(response.status).to eq(302)
@@ -147,14 +147,14 @@ RSpec.describe "Artists", type: :request do
 
   describe "PUT /reset_password" do
     let(:artist) { create(:artist) }
-    before { put reset_password_admin_artist_path(artist.id) }
+    before { put reset_password_admin_artist_path(artist.friendly_id) }
 
     it { expect(response.status).to eq(204) }
   end
 
   describe "PUT /send_welcome_email" do
     let(:artist) { create(:artist) }
-    before { put send_welcome_email_admin_artist_path(artist.id) }
+    before { put send_welcome_email_admin_artist_path(artist.friendly_id) }
 
     it { expect(response.status).to eq(204) }
   end

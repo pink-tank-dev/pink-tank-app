@@ -58,6 +58,8 @@ module Admin
 
     def set_artist
       @artist = Artist.includes(:artworks).friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to admin_artists_path, warning: "Artist not found."
     end
 
     def artist_params
