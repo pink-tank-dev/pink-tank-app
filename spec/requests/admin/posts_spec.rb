@@ -5,7 +5,7 @@ RSpec.describe "Posts", type: :request do
   before { login_user(current_user) }
 
   describe "GET /index" do
-    before { get admin_artist_posts_path(artist.id) }
+    before { get admin_artist_posts_path(artist.friendly_id) }
 
     context "artist exists" do
       let(:artist) { create(:artist) }
@@ -15,7 +15,7 @@ RSpec.describe "Posts", type: :request do
     end
 
     context "artist does not exist" do
-      let(:artist) { double(id: 300) }
+      let(:artist) { double(friendly_id: 300) }
 
       it do
         expect(response.status).to eq(302)
@@ -29,7 +29,7 @@ RSpec.describe "Posts", type: :request do
   describe "GET /show" do
     let(:artist) { create(:artist) }
 
-    before { get admin_artist_post_path(artist.id, artist_post.id) }
+    before { get admin_artist_post_path(artist.friendly_id, artist_post.id) }
 
     context "post exists" do
       let(:artist_post) { create(:post, artist: artist) }
