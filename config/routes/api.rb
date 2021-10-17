@@ -3,4 +3,8 @@ namespace :api do
     post 'contact_us', to: 'contact_us#create'
     resources :artists, only: %i[index show]
   end
+
+  namespace :metaverse, defaults: { format: :json } do
+    resources :artists, only: %i[show]
+  end
 end

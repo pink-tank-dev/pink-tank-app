@@ -7,5 +7,6 @@ FactoryBot.define do
     medium { Faker::Color.color_name }
     measurements { Faker::Measurement.height }
     status { Artwork.statuses[:available] }
+    position { 1 }
   end
 end
