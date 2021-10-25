@@ -54,7 +54,9 @@
       <table class="table table-sm table-borderless">
         <tr>
           <th>Description</th>
-          <td><%= @artwork.description %></td>
+          <td>
+            <p><%= @artwork.description %></p>
+          </td>
         </tr>
         <tr>
           <th>Notes</th>
@@ -64,3 +66,9 @@
     </div>
   </div>
 </div>
+
+<style>
+  p {
+    white-space: pre-wrap;
+  }
+</style>

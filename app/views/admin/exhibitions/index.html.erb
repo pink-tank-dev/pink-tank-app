@@ -16,7 +16,9 @@
             <tr>
               <th><%= exhibition.id %></th>
               <td><%= link_to exhibition.title, admin_exhibition_path(exhibition) %></td>
-              <td><%= exhibition.description %></td>
+              <td>
+                <p><%= exhibition.description %></p>
+              </td>
             </tr>
           <% end %>
         </tbody>
@@ -24,3 +26,9 @@
     </div>
   </div>
 </div>
+
+<style>
+  p {
+    white-space: pre-wrap;
+  }
+</style>
