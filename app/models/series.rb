@@ -28,6 +28,10 @@ class Series < ApplicationRecord
   validates :artist, uniqueness: true
   validate :artworks_belong_to_series_artist
 
+  scope :by_artwork, -> (artwork_id) do
+    includes(:artworks).where(artworks: { id: artwork_id })
+  end
+
   def artworks_belong_to_series_artist
     return if artworks.empty?
     artist_ids = artworks.map(&:artist_id).compact.uniq

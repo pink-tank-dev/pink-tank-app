@@ -31,6 +31,17 @@ module Admin
 
     def show; end
 
+    def destroy
+      series = Series.by_artwork(@artwork.id)
+      if series.present?
+        @artwork.errors.add(:base, "Artwork connected to series. Remove the artwork from #{series.pluck(:title).join(', ')} before attempting deletion.")
+        redirect_to admin_artist_path(@artist), danger: artwork_errors
+      else
+        @artwork.destroy
+        redirect_to admin_artist_path(@artist), success: "Artwork successfully deleted"
+      end
+    end
+
     private
 
     def set_artist
@@ -40,7 +51,7 @@ module Admin
     end
 
     def set_artwork
-      @artwork = Artwork.find_by(id: params[:id])
+      @artwork = @artist.artworks.find_by(id: params[:id])
       redirect_to admin_artist_path(@artist), warning: "Artwork not found." unless @artwork.present?
     end
 

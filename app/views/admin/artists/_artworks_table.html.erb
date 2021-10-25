@@ -4,6 +4,7 @@
       <th>Preview</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Series</th>
       <th></th>
     </thead>
     <tbody>
@@ -31,6 +32,7 @@
           </td>
           <td><%= artwork.title %></td>
           <td><%= artwork.description %></td>
+          <td><%= Series.by_artwork(artwork.id).pluck(:title).join(', ') %></td>
           <td style="text-align:center">
             <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="actionsDropdown<%= artwork.id %>" data-bs-toggle="dropdown" aria-expanded="false">
               Actions
@@ -38,6 +40,8 @@
             <ul class="dropdown-menu" aria-labelledby="actionsDropdown<%= artwork.id %>">
               <%= link_to "Edit", edit_admin_artist_artwork_path(@artist, artwork), class: "dropdown-item" %>
               <%= link_to "View", admin_artist_artwork_path(@artist, artwork), class: "dropdown-item" %>
+              <li><hr class="dropdown-divider"></li>
+              <%= link_to "Delete", admin_artist_artwork_path(@artist, artwork), method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
             </ul>
           </td>
         </tr>
