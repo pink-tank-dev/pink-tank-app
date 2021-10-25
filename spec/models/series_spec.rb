@@ -16,17 +16,20 @@ RSpec.describe Series, type: :model do
     it { should validate_presence_of(:artworks) }
 
     describe "#artworks_belong_to_series_artist" do
-      context "when artworks empty" do
+      let(:artist) { create(:artist) }
+      context "and only artworks from 1 artist is featured" do
+        let(:artworks) { create_list(:artwork, 2, artist: artist) }
+        let(:series) { build(:series, artworks: artworks) }
+
+        it { expect(series.valid?).to eq(true) }
       end
 
-      context "when artworks not empty" do
-        context "and only artworks from 1 artist is featured" do
-          
-        end
+      context "and artworks from multiple artists are featured" do
+        let(:artwork_1) { create(:artwork, artist: artist) }
+        let(:artwork_2) { create(:artwork) }
+        let(:series) { build(:series, artworks: [artwork_1, artwork_2]) }
 
-        context "and artworks from multiple artists are featured" do
-          
-        end
+        it { expect(series.valid?).to eq(false) }
       end
     end
   end

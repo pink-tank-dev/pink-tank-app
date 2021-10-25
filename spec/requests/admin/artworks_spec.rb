@@ -79,21 +79,15 @@ RSpec.describe "Artworks", type: :request do
     before { get edit_admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id) }
 
     context "artwork exists" do
-      let!(:artwork) { create(:artwork) }
+      let(:artwork) { create(:artwork, artist: artist) }
 
       context "artist exists" do
         it_behaves_like "successful response"
       end
-  
-      context "artist does not exist" do
-        let(:artist) { double(friendly_id: 300) }
-  
-        it_behaves_like "successful redirect and response"
-      end
     end
 
     context "artwork does not exist" do
-      let!(:artwork) { double(id: 300) }
+      let(:artwork) { double(id: 300) }
 
       context "artist exists" do
         it_behaves_like "successful redirect and response"
@@ -108,7 +102,7 @@ RSpec.describe "Artworks", type: :request do
   end
 
   describe "PUT /update" do
-    let!(:artwork) { create(:artwork, artist: artist) }
+    let(:artwork) { create(:artwork, artist: artist) }
 
     before do
       put admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id), params: artwork_params
@@ -153,31 +147,35 @@ RSpec.describe "Artworks", type: :request do
     before { get admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id) }
 
     context "artwork exists" do
-      let!(:artwork) { create(:artwork) }
+      let(:artwork) { create(:artwork, artist: artist) }
 
       context "artist exists" do
         it_behaves_like "successful response"
       end
-  
-      context "artist does not exist" do
-        let(:artist) { double(friendly_id: 300) }
-  
-        it_behaves_like "successful redirect and response"
-      end
     end
 
     context "artwork does not exist" do
-      let!(:artwork) { double(id: 300) }
+      let(:artwork) { double(id: 300) }
 
       context "artist exists" do
         it_behaves_like "successful redirect and response"
       end
-  
-      context "artist does not exist" do
-        let(:artist) { double(friendly_id: 300) }
-  
-        it_behaves_like "successful redirect and response"
-      end
+    end
+  end
+
+  describe "DELETE /destroy" do
+    before { delete admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id) }
+
+    let(:artwork) { create(:artwork, artist: artist) }
+
+    context "artwork belongs in a series" do
+      let(:series) { create(:series, artist: artist, artworks: [artwork]) }
+
+      it_behaves_like "successful redirect and response"
+    end
+
+    context "artwork does not belong in a series" do
+      it_behaves_like "successful redirect and response"
     end
   end
 end
