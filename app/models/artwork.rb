@@ -20,6 +20,8 @@
 #  index_artworks_on_artist_id  (artist_id)
 #
 class Artwork < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   acts_as_list
 
   belongs_to :artist
@@ -38,7 +40,22 @@ class Artwork < ApplicationRecord
   def file_html
     Nokogiri::HTML::Builder.new do |doc|
       doc.html {
-        doc.img src: Rails.application.routes.url_helpers.rails_blob_path(file, only_path: true)
+        if file.video?
+          doc.video src: rails_blob_path(file, only_path: true),
+                    preload: "auto",
+                    controls: true,
+                    width: "100%",
+                    height: "100%"
+        elsif file.audio?
+          doc.audio src: rails_blob_path(file, only_path: true)
+        elsif file.content_type == 'application/pdf'
+          doc.embed src: rails_blob_path(file, only_path: true),
+                    width: "100%",
+                    height: "500",
+                    type: "application/pdf"
+        elsif file.representable?
+          doc.img src: rails_blob_path(file, only_path: true)
+        end
       }
     end.to_html
   end
