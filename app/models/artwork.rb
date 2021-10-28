@@ -28,7 +28,7 @@ class Artwork < ApplicationRecord
 
   has_one_attached :file
 
-  validates :file, :title, :description, presence: true
+  validates :title, :description, presence: true
   validates :medium, :measurements, :status, presence: true
 
   enum status: %i[available sold]
@@ -38,6 +38,7 @@ class Artwork < ApplicationRecord
   scope :by_artist, -> (id) { where(artist_id: id) }
 
   def file_html
+    return unless file.present?
     Nokogiri::HTML::Builder.new do |doc|
       doc.html {
         if file.video?
