@@ -32,6 +32,7 @@ gem "acts_as_list", "~> 1.0"
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cocoon', '~> 1.2', '>= 1.2.15'
+gem 'config', '~> 3.1'
 gem 'dalli', '~> 2.7', '>= 2.7.11'
 gem 'friendly_id', '~> 5.4.0'
 gem 'google-apis-core', '~> 0.4.1'
