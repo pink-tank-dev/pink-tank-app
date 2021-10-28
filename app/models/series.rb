@@ -24,7 +24,7 @@ class Series < ApplicationRecord
 
   validates :title, :description, presence: true
   validates :exhibition, :artist, presence: true
-  # validates :artworks, presence: true
+  validates :artworks, presence: true
   validates :artist, uniqueness: true
   validate :artworks_belong_to_series_artist
 
