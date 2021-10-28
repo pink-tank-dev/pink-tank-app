@@ -39,4 +39,8 @@ class Artist < ApplicationRecord
   def sito?
     id.eql?(6)
   end
+
+  def yasmin?
+    id.eql?(15)
+  end
 end

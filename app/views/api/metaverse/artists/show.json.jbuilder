@@ -6,7 +6,7 @@ json.set! :series do
   json.id     @artist.series.id
   json.title  @artist.series.title
   json.set! :artworks do
-    unless @artist.sito?
+    unless @artist.sito? || @artist.yasmin?
       json.array! @artist.series.artworks.order(position: :asc) do |artwork|
         json.id           artwork.id
         json.html         artwork.file_html
