@@ -2,7 +2,7 @@ module Api
   module V1
     class ArtistsController < Api::ApplicationController
       before_action :set_artist, only: %i[show]
-      caches_action :index, :show, expires_in: 1.hour
+      caches_action :index, expires_in: 1.hour
 
       def index
         @artists = Artist.active.order(name: :asc)
