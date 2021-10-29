@@ -26,6 +26,7 @@
               <ul class="dropdown-menu" aria-labelledby="actionsDropdown<%= series.id %>">
                 <%= link_to "Edit", edit_admin_exhibition_series_path(@exhibition.id, series.id), class: "dropdown-item" %>
                 <%= link_to "View", admin_exhibition_series_path(@exhibition.id, series.id), class: "dropdown-item" %>
+                <li><hr class="dropdown-divider"></li>
                 <%= link_to "Delete", admin_exhibition_series_path(@exhibition.id, series.id), method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
               </ul>
             </td>
