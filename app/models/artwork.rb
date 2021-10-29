@@ -42,20 +42,20 @@ class Artwork < ApplicationRecord
     Nokogiri::HTML::Builder.new do |doc|
       doc.html {
         if file.video?
-          doc.video src: rails_blob_path(file, only_path: true),
+          doc.video src: rails_blob_url(file),
                     preload: "auto",
                     controls: true,
                     width: "100%",
                     height: "100%"
         elsif file.audio?
-          doc.audio src: rails_blob_path(file, only_path: true)
+          doc.audio src: rails_blob_url(file)
         elsif file.content_type == 'application/pdf'
-          doc.embed src: rails_blob_path(file, only_path: true),
+          doc.embed src: rails_blob_url(file),
                     width: "100%",
                     height: "500",
                     type: "application/pdf"
         elsif file.representable?
-          doc.img src: rails_blob_path(file, only_path: true)
+          doc.img src: rails_blob_url(file)
         end
       }
     end.to_html
