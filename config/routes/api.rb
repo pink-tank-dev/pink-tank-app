@@ -6,5 +6,10 @@ namespace :api do
 
   namespace :metaverse, defaults: { format: :json } do
     resources :artists, only: %i[show]
+    resources :visitors, only: %i[create] do
+      collection do
+        post :send_email
+      end
+    end
   end
 end
