@@ -35,4 +35,8 @@ class Artist < ApplicationRecord
   validates :status, presence: true
 
   enum status: %i[active inactive]
+
+  def roshan?
+    id.eql?(10)
+  end
 end
