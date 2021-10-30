@@ -8,7 +8,7 @@ namespace :api do
     resources :artists, only: %i[show]
     resources :visitors, only: %i[create] do
       collection do
-        post :send_email
+        post :thank_you
       end
     end
   end
