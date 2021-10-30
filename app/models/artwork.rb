@@ -48,7 +48,9 @@ class Artwork < ApplicationRecord
                     width: "100%",
                     height: "100%"
         elsif file.audio?
-          doc.audio src: rails_blob_url(file)
+          doc.audio(controls: true) {
+            doc.source src: rails_blob_url(file)
+          }
         elsif file.content_type == 'application/pdf'
           doc.embed src: rails_blob_url(file),
                     width: "100%",
