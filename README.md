@@ -5,14 +5,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
-3.0.1
+* Ruby version: 3.0.1
 
-* Node version
-16.11.0
+* Node version: 16.11.0
 
-* Yarn version
-1.22.4
+* Yarn version: 1.22.4
 
 * System dependencies
 
@@ -22,8 +19,10 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
-rspec `relative_path_to_spec`
+* How to run the test suite:
+```
+rspec path/to/spec
+```
 
 * Services (job queues, cache servers, search engines, etc.)
 
