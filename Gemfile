@@ -49,6 +49,7 @@ gem 'redis-namespace', '~> 1.8', '>= 1.8.1'
 gem 'sentry-ruby', '~> 4.6', '>= 4.6.4'
 gem 'sentry-rails', '~> 4.6', '>= 4.6.4'
 gem 'sidekiq', '~> 6.2', '>= 6.2.1'
+gem 'uglifier', '~> 4.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
