@@ -37,7 +37,7 @@ Rails.application.configure do
   config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.asset_host = "d248gssp7wven8.cloudfront.net"
+  config.asset_host = ENV['AWS_CF'] if ENV['AWS_CF'].present?
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
