@@ -8,7 +8,7 @@ json.set! :series do
   json.set! :artworks do
     json.array! @artist.series.artworks.order(position: :asc) do |artwork|
       json.id           artwork.id
-      json.html         (render partial: 'api/metaverse/artists/artwork.html.erb', locals: { file: artwork.file }).html_safe
+      json.html         (render partial: 'api/metaverse/artists/artwork.html.erb', locals: { blob: artwork.file.blob }).html_safe
       json.title        artwork.title
       json.description  artwork.description
       json.medium       artwork.medium
