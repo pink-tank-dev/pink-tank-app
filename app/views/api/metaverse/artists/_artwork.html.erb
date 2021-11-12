@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <% if file.video? %>
+    <%= video_tag url_for(file),
+      preload: "auto",
+      controls: true,
+      width: "100%",
+      height: "100%" %>
+  <% elsif file.audio? %>
+    <%= audio_tag url_for(file), 
+      autoplay: true,
+      controls: true %>
+  <% elsif file.content_type == 'application/pdf' %>
+    <embed
+      src=<%= url_for(file) %>
+      width="100%"
+      height="500"
+      type="application/pdf">
+  <% elsif file.representable? %>
+    <%= image_tag url_for(file.representation(resize_to_limit: [1024, 768])) %>
+  <% end %>
+</html>

@@ -42,7 +42,7 @@ class Artwork < ApplicationRecord
     Nokogiri::HTML::Builder.new do |doc|
       doc.html {
         if file.video?
-          doc.video src: url_for(file, host: host),
+          doc.video src: url_for(file),
                     preload: "auto",
                     controls: true,
                     width: "100%",
@@ -52,26 +52,18 @@ class Artwork < ApplicationRecord
             nil
           else
             doc.audio(controls: true, autoplay: true) {
-              doc.source src: url_for(file, host: host)
+              doc.source src: url_for(file)
             }
           end
         elsif file.content_type == 'application/pdf'
-          doc.embed src: url_for(file, host: host),
+          doc.embed src: url_for(file),
                     width: "100%",
                     height: "500",
                     type: "application/pdf"
         elsif file.representable?
-          doc.img src: url_for(file.representation(resize_to_limit: [1024, 768]), host: host)
+          doc.img src: url_for(file.representation(resize_to_limit: [1024, 768]))
         end
       }
     end.to_html
-  end
-
-  def host
-    if Rails.env.staging? || Rails.env.production?
-      "https://pink-tank-app-#{Rails.env}.herokuapp.com"
-    else
-      nil
-    end
   end
 end
