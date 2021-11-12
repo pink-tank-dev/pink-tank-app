@@ -42,7 +42,7 @@ class Artwork < ApplicationRecord
     Nokogiri::HTML::Builder.new do |doc|
       doc.html {
         if file.video?
-          doc.video src: rails_blob_url(file),
+          doc.video src: url_for(file),
                     preload: "auto",
                     controls: true,
                     width: "100%",
@@ -52,16 +52,16 @@ class Artwork < ApplicationRecord
             nil
           else
             doc.audio(controls: true, autoplay: true) {
-              doc.source src: rails_blob_url(file)
+              doc.source src: url_for(file)
             }
           end
         elsif file.content_type == 'application/pdf'
-          doc.embed src: rails_blob_url(file),
+          doc.embed src: url_for(file),
                     width: "100%",
                     height: "500",
                     type: "application/pdf"
         elsif file.representable?
-          doc.img src: rails_blob_url(file)
+          doc.img src: url_for(file.representation(resize_to_limit: [1024, 768]))
         end
       }
     end.to_html

@@ -1,5 +1,4 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
-
   <% if blob.video? %>
     <%= video_tag url_for(blob.attachable),
       preload: "auto",
@@ -17,7 +16,7 @@
       height="500"
       type="application/pdf">
   <% elsif blob.representable? %>
-    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768]) %>
+    <%= image_tag url_for(blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768])) %>
   <% end %>
 
   <figcaption class="attachment__caption">
