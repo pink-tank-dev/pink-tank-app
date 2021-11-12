@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <% if blob.video? %>
-    <%= video_tag url_for(blob.attachable),
+  <% if file.video? %>
+    <%= video_tag url_for(file),
       preload: "auto",
       controls: true,
       width: "100%",
       height: "100%" %>
-  <% elsif blob.audio? %>
-    <%= audio_tag url_for(blob.attachable), 
+  <% elsif file.audio? %>
+    <%= audio_tag url_for(file), 
       autoplay: true,
       controls: true %>
-  <% elsif blob.content_type == 'application/pdf' %>
+  <% elsif file.content_type == 'application/pdf' %>
     <embed
-      src=<%= url_for(blob.attachable) %>
+      src=<%= url_for(file) %>
       width="100%"
       height="500"
       type="application/pdf">
-  <% elsif blob.representable? %>
-    <%= image_tag url_for(blob.representation(resize_to_limit: [1024, 768])) %>
+  <% elsif file.representable? %>
+    <%= image_tag url_for(file.representation(resize_to_limit: [1024, 768])) %>
   <% end %>
 </html>
