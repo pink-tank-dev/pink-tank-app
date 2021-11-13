@@ -20,8 +20,6 @@
 #  index_artworks_on_artist_id  (artist_id)
 #
 class Artwork < ApplicationRecord
-  include Rails.application.routes.url_helpers
-
   acts_as_list
 
   belongs_to :artist
@@ -36,34 +34,4 @@ class Artwork < ApplicationRecord
   monetize :price_cents
 
   scope :by_artist, -> (id) { where(artist_id: id) }
-
-  def file_html
-    return unless file.present?
-    Nokogiri::HTML::Builder.new do |doc|
-      doc.html {
-        if file.video?
-          doc.video src: url_for(file),
-                    preload: "auto",
-                    controls: true,
-                    width: "100%",
-                    height: "100%"
-        elsif file.audio?
-          if artist.roshan?
-            nil
-          else
-            doc.audio(controls: true, autoplay: true) {
-              doc.source src: url_for(file)
-            }
-          end
-        elsif file.content_type == 'application/pdf'
-          doc.embed src: url_for(file),
-                    width: "100%",
-                    height: "500",
-                    type: "application/pdf"
-        elsif file.representable?
-          doc.img src: url_for(file.representation(resize_to_limit: [1024, 768]))
-        end
-      }
-    end.to_html
-  end
 end
