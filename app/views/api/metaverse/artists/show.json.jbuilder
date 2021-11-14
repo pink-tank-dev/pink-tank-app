@@ -11,7 +11,7 @@ json.set! :series do
       if artwork.file.present?
         json.html         (ApplicationController.render partial: 'api/metaverse/artists/artwork.html.erb', locals: { file: artwork.file }).html_safe
       else
-        json.html       json.nil!
+        json.html       nil
       end
       json.title        artwork.title
       json.description  artwork.description
