@@ -16,8 +16,7 @@ module Api
 
       def set_artist
         @artist = Artist.find_by(id: params[:id])
-
-        return error("Artist not found", 404) unless @artist
+        return error('Artist not found', 404) unless @artist
       end
     end
   end

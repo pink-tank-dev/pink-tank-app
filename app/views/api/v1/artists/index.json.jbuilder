@@ -4,3 +4,5 @@ json.set! :artists do
     json.name   artist.name
   end
 end
+
+json.partial! 'api/v1/partials/metadata', page: page, limit: nil, total: @artists.size
