@@ -2,7 +2,8 @@ module Api
   module V1
     class GalleriesController < Api::ApplicationController
       def show
-        series = Exhibition.current.last.series.includes(:artist).order('artists.name asc')
+        @exhibition = Exhibition.current.last
+        series = @exhibition.series.includes(:artist).order('artists.name asc')
         @total = series.size
         @series = Kaminari.paginate_array(series).page(page).per(limit)
       end
