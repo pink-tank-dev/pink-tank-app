@@ -14,7 +14,7 @@ RSpec.describe "Api::V1::Galleries", type: :request do
 
     it do
       expect(response.status).to eq(200)
-      expect(json["series"].map { |series| series["artist_name"] }).to eq(['Becca', 'Shawn'])
+      expect(json["exhibition"]["series"].map { |series| series["artist_name"] }).to eq(['Becca', 'Shawn'])
     end
   end
 end
