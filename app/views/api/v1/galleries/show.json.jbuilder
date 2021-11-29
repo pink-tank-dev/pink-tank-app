@@ -12,8 +12,7 @@ json.set! :exhibition do
         json.artist_name  series.artist.name
         json.set! :artworks do
           json.array! series.artworks.order(:position) do |artwork|
-            json.id       artwork.id
-            json.title    artwork.title
+            json.partial! 'api/v1/partials/artwork', artwork: artwork
           end
         end
       end
