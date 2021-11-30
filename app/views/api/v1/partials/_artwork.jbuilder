@@ -5,6 +5,7 @@ if artwork.file.present?
 else
   json.html nil
 end
-json.description  artwork.description
-json.medium       artwork.medium
-json.price        humanized_money_with_symbol artwork.price
+json.description    artwork.description
+json.medium         artwork.medium
+json.price          humanized_money_with_symbol artwork.price
+json.nft_site_url   artwork.nft_site_url
