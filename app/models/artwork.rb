@@ -6,6 +6,7 @@
 #  description  :text
 #  measurements :string
 #  medium       :string
+#  nft_site_url :string
 #  notes        :text
 #  position     :integer
 #  price_cents  :integer          default(0), not null
