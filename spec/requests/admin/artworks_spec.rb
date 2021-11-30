@@ -47,7 +47,8 @@ RSpec.describe "Artworks", type: :request do
             description: Faker::Movies::BackToTheFuture.quote,
             medium: Faker::Color.color_name,
             measurements: Faker::Measurement.height,
-            status: :available
+            status: :available,
+            nft_site_url: Faker::Internet.url
           }
         }
       end
@@ -57,6 +58,7 @@ RSpec.describe "Artworks", type: :request do
       it "creates artwork belonging to the artist" do
         artist.reload
         expect(artist.artworks.first.id).to eq(Artwork.last.id)
+        expect(artist.artworks.first.nft_site_url).not_to be_nil
       end
     end
 
