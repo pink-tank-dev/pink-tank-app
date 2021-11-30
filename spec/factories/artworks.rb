@@ -8,5 +8,6 @@ FactoryBot.define do
     measurements { Faker::Measurement.height }
     status { Artwork.statuses[:available] }
     position { 1 }
+    nft_site_url { Faker::Internet.url }
   end
 end

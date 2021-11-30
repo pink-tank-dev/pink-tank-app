@@ -64,7 +64,8 @@ module Admin
         :description,
         :status,
         :notes,
-        :price
+        :price,
+        :nft_site_url
       )
     end
 
