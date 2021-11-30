@@ -49,6 +49,14 @@
             <th>Price</th>
             <td><%= @artwork.price %></td>
           </tr>
+          <tr>
+            <th>NFT Site Link</th>
+            <td>
+              <% if @artwork.nft_site_url? %>
+                <%= link_to 'Click here', @artwork.nft_site_url, target: :_blank %>
+              <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
