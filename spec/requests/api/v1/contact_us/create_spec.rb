@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Api::ContactUs", type: :request do
+RSpec.describe "Api::V1::ContactUs", type: :request do
   describe "POST /create" do
     let(:params) do
       {
