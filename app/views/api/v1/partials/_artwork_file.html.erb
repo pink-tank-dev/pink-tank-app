@@ -7,18 +7,15 @@
       width: "100%",
       height: "100%" %>
   <% elsif file.audio? %>
-    <%# <%= audio_tag rails_blob_url(file, only_path: true), 
-      autoplay: true,
-      controls: true %> %>
     <audio autoplay controls>
       <source
-        src=<%= rails_blob_url(file, only_path: true) %>
-        type=<%= file.content_type %>
+        src="<%= rails_blob_url(file, only_path: true) %>"
+        type="<%= file.content_type %>"
       >
     </audio>
   <% elsif file.content_type == 'application/pdf' %>
     <embed
-      src=<%= rails_blob_url(file, only_path: true) %>
+      src="<%= rails_blob_url(file, only_path: true) %>"
       width="100%"
       height="500"
       type="application/pdf">
