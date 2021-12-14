@@ -1,8 +1,9 @@
 json.set! :artwork do
   json.partial! 'api/v1/partials/artwork', artwork: @series.artworks.find_by(id: params[:artwork_id])
   json.set! :series do
-    json.id     @series.id
-    json.title  @series.title
+    json.id           @series.id
+    json.title        @series.title
+    json.description  @series.description
   end
   json.set! :artist do
     json.id     @series.artist_id

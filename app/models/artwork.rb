@@ -24,6 +24,7 @@ class Artwork < ApplicationRecord
   acts_as_list
 
   belongs_to :artist
+  has_one :series, through: :artist
 
   has_one_attached :file
 
