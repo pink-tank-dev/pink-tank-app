@@ -10,9 +10,12 @@
           width: "100%",
           height: "100%" %>
       <% elsif @artwork.file.audio? %>
-        <%= audio_tag url_for(@artwork.file), 
-          autoplay: true,
-          controls: true %>
+        <audio autoplay controls>
+          <source
+            src="<%= url_for(@artwork.file) %>"
+            type="<%= @artwork.file.content_type %>"
+          >
+        </audio>
       <% elsif @artwork.file.content_type == 'application/pdf' %>
         <embed
           src=<%= url_for(@artwork.file) %>
