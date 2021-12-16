@@ -12,7 +12,7 @@
       <% elsif @artwork.file.audio? %>
         <audio autoplay controls>
           <source
-            src="<%= url_for(@artwork.file) %>"
+            src="<%= url_for(@artwork.file, host: ENV['ASSET_HOST']) %>"
             type="<%= @artwork.file.content_type %>"
           >
         </audio>
