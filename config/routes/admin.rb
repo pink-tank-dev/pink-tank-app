@@ -12,7 +12,11 @@ namespace :admin do
       put 'send_welcome_email'
     end
     resources :posts, only: %i[index show]
-    resources :artworks, except: %i[index]
+    resources :artworks, except: %i[index] do
+      member do
+        get 'invoice_preview'
+      end
+    end
   end
   resources :exhibitions, except: %i[destroy] do
     resources :series, except: %i[index]
