@@ -165,6 +165,26 @@ RSpec.describe "Artworks", type: :request do
     end
   end
 
+  describe "GET /invoice_preview" do
+    before { get invoice_preview_admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id, format: :pdf) }
+
+    context "artwork exists" do
+      let(:artwork) { create(:artwork, artist: artist) }
+
+      context "artist exists" do
+        it_behaves_like "successful response"
+      end
+    end
+
+    context "artwork does not exist" do
+      let(:artwork) { double(id: 300) }
+
+      context "artist exists" do
+        it_behaves_like "successful redirect and response"
+      end
+    end
+  end
+
   describe "DELETE /destroy" do
     before { delete admin_artist_artwork_path(artist_id: artist.friendly_id, id: artwork.id) }
 
