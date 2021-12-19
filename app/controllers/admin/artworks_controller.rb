@@ -1,5 +1,7 @@
 module Admin
   class ArtworksController < Admin::ApplicationController
+    include MoneyRails::ActionViewExtension
+
     before_action :set_artist
     before_action :set_artwork, except: %i[index new create]
 
@@ -30,6 +32,48 @@ module Admin
     end
 
     def show; end
+
+    def invoice_preview
+      @invoice_preview = Receipts::Invoice.new(
+        id: 1,
+        issue_date: Date.current,
+        due_date: 3.months.from_now.to_date,
+        status: 'PROCESSING',
+        bill_to: [
+          Faker::Name.name,
+          Faker::Address.street_address,
+          Faker::Address.secondary_address,
+          "#{Faker::Address.postcode Faker::Address.city}",
+          Faker::Address.country,
+          nil,
+          Faker::Internet.email,
+          Faker::PhoneNumber.phone_number
+        ],
+        company: {
+          name: 'Pink Tank Collective',
+          address: 'Kuala Lumpur',
+          email: 'pinktankcollective@gmail.com',
+          logo: Rails.root.join('app/assets/images/logo_pinktank_transparent.png')
+        },
+        line_items: [
+          ["<b>Item</b>", "<b>Unit Cost</b>", "<b>Quantity</b>", "<b>Payment Term</b>", "<b>Amount</b>"],
+          [@artwork.title, humanized_money_with_symbol(@artwork.price), 1.to_s, 'Installment 3 months', humanized_money_with_symbol(@artwork.price)],
+          [nil, nil, "Subtotal", nil, humanized_money_with_symbol(@artwork.price)],
+          [nil, nil, "Total", nil, humanized_money_with_symbol(@artwork.price)],
+        ]
+      )
+
+      respond_to do |format|
+        format.pdf {
+          send_data(
+            @invoice_preview.render,
+            filename: "#{@artwork.title}}_invoice_preview.pdf",
+            type: 'application/pdf',
+            disposition: :inline
+          )
+        }
+      end
+    end
 
     def destroy
       series = Series.by_artwork(@artwork.id)
