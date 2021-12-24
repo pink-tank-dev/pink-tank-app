@@ -34,6 +34,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cocoon', '~> 1.2', '>= 1.2.15'
 gem 'config', '~> 3.1'
 gem 'dalli', '~> 2.7', '>= 2.7.11'
+gem 'faker', '~> 2.18'
 gem 'friendly_id', '~> 5.4.0'
 gem 'google-apis-core', '~> 0.4.1'
 gem 'google-apis-drive_v3', '~> 0.15.0'
@@ -56,7 +57,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-  gem 'faker', '~> 2.18'
   gem 'rexml', '~> 3.2', '>= 3.2.4'
   gem 'rspec-rails', '~> 5.0', '>= 5.0.1'
 end
