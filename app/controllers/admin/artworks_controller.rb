@@ -35,19 +35,19 @@ module Admin
 
     def invoice_preview
       @invoice_preview = Receipts::Invoice.new(
-        id: 1,
+        id: "PTC-#{Date.current.strftime('%Y%m%d')}-#{@artwork.id}",
         issue_date: Date.current,
         due_date: 3.months.from_now.to_date,
         status: 'PROCESSING',
         bill_to: [
-          Faker::Name.name,
-          Faker::Address.street_address,
-          Faker::Address.secondary_address,
-          "#{Faker::Address.postcode Faker::Address.city}",
-          Faker::Address.country,
+          ::Faker::Name.name,
+          ::Faker::Address.street_address,
+          ::Faker::Address.secondary_address,
+          "#{::Faker::Address.postcode ::Faker::Address.city}",
+          ::Faker::Address.country,
           nil,
-          Faker::Internet.email,
-          Faker::PhoneNumber.phone_number
+          ::Faker::Internet.email,
+          ::Faker::PhoneNumber.phone_number
         ],
         company: {
           name: 'Pink Tank Collective',
