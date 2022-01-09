@@ -1,7 +1,6 @@
 module Admin
   class ArtworksController < Admin::ApplicationController
     include MoneyRails::ActionViewExtension
-
     before_action :set_artist
     before_action :set_artwork, except: %i[index new create]
 
@@ -35,19 +34,19 @@ module Admin
 
     def invoice_preview
       @invoice_preview = Receipts::Invoice.new(
-        id: "PTC-#{Date.current.strftime('%Y%m%d')}-#{@artwork.id}",
+        id: "PT-#{Date.current.strftime('%Y%m%d')}-#{@artwork.id}",
         issue_date: Date.current,
         due_date: 3.months.from_now.to_date,
-        status: 'PROCESSING',
+        status: 'ORDER IN PROCESS',
         bill_to: [
-          ::Faker::Name.name,
-          ::Faker::Address.street_address,
-          ::Faker::Address.secondary_address,
-          "#{::Faker::Address.postcode ::Faker::Address.city}",
-          ::Faker::Address.country,
+          Faker::Name.name,
+          Faker::Address.street_address,
+          Faker::Address.secondary_address,
+          "#{Faker::Address.postcode Faker::Address.city}",
+          Faker::Address.country,
           nil,
-          ::Faker::Internet.email,
-          ::Faker::PhoneNumber.phone_number
+          Faker::Internet.email,
+          Faker::PhoneNumber.phone_number
         ],
         company: {
           name: 'Pink Tank Collective',
