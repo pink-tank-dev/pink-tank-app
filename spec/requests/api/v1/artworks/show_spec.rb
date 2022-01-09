@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Galleries::Artworks#show", type: :request do
+RSpec.describe "Api::V1::Artworks#show", type: :request do
   describe "GET api/v1/artworks/:id" do
     context "when artwork exists" do
       let(:exhibition) { create(:exhibition) }
