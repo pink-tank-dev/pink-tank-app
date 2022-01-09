@@ -34,7 +34,7 @@ module Admin
 
     def invoice_preview
       @invoice_preview = Receipts::Invoice.new(
-        id: "PT-#{Date.current.strftime('%Y%m%d')}-#{@artwork.id}",
+        id: "PT-#{DateTime.current.strftime('%Y%m%d-%H%M%S%L')}-#{@artwork.id}",
         issue_date: Date.current,
         due_date: 3.months.from_now.to_date,
         status: 'ORDER IN PROCESS',

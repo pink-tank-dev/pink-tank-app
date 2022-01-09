@@ -3,12 +3,25 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>Hello there, this is your invoice.</p>
- 
-    <embed
-      src=<%= attachments['invoice.pdf'].url %>
-      width="100%"
-      height="100%"
-      type="application/pdf">
+    <p>Hello,</p>
+
+    <p>You have shown interest in the following artwork: </p>
+
+    <table>
+      <tr>
+        <td><b>Title:</b></td>
+        <td><%= @artwork.title %></td>
+      </tr>
+      <tr>
+        <td><b>Artist:</b></td>
+        <td><%= @artwork.artist.name %></td>
+      </tr>
+      <tr>
+        <td><b>Price:</b></td>
+        <td>RM <%= @artwork.price %></td>
+      </tr>
+    </table>
+
+    <p>An invoice for the aforementioned artwork has been attached to this email.</p>
   </body>
 </html>
