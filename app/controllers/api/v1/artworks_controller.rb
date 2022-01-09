@@ -15,7 +15,7 @@ module Api
         return error("Shipping information incomplete", 400) unless shipping_params_provided?
         return error("Pickup information incomplete", 400) unless pickup_params_provided?
 
-        SendAcquireInvoiceWorker.perform_async(acquire_params.merge(artwork_id: @artwork.id, artwork_title: @artwork.title))
+        SendAcquireInvoiceWorker.perform_async(acquire_params.merge(artwork_id: @artwork.id))
 
         head :no_content
       end

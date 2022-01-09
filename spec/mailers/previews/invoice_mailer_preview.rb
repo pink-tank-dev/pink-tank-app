@@ -1,17 +1,27 @@
 class InvoiceMailerPreview < ActionMailer::Preview
   def send_to_admin
-    InvoiceMailer.send_to_admin(name: 'Nazrin', email: 'nazrin@mail.com', artwork_title: 'This random artwork', invoice: invoice)
+    InvoiceMailer.send_to_admin(
+      name: 'Nazrin',
+      email: 'nazrin@mail.com',
+      artwork: artwork,
+      invoice: invoice
+    )
   end
 
   def send_to_acquirer
-    InvoiceMailer.send_to_acquirer(name: 'Nazrin', email: 'nazrin@mail.com', artwork_title: 'This random artwork', invoice: invoice)
+    InvoiceMailer.send_to_acquirer(
+      name: 'Nazrin',
+      email: 'nazrin@mail.com',
+      artwork: artwork,
+      invoice: invoice
+    )
   end
 
   private
 
   def invoice
     Receipts::Invoice.new(
-        id: "PT-#{Date.current.strftime('%Y%m%d')}-1",
+        id: "PT-#{DateTime.current.strftime('%Y%m%d-%H%M%S%L')}-1",
         issue_date: Date.current,
         due_date: 3.months.from_now.to_date,
         status: 'ORDER IN PROCESS',
@@ -38,5 +48,9 @@ class InvoiceMailerPreview < ActionMailer::Preview
           [nil, nil, "Total", nil, 'RM 10.00'],
         ]
       )
+  end
+
+  def artwork
+    Artwork.first
   end
 end

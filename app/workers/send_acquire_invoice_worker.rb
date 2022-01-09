@@ -5,12 +5,12 @@ class SendAcquireInvoiceWorker
     InvoiceMailer.send_to_admin(
       name: name,
       email: email,
-      artwork_title: artwork_title,
+      artwork: artwork,
       invoice: invoice).deliver_later
     InvoiceMailer.send_to_acquirer(
       name: name,
       email: email,
-      artwork_title: artwork_title,
+      artwork: artwork,
       invoice: invoice).deliver_later
   end
 
@@ -28,7 +28,7 @@ class SendAcquireInvoiceWorker
     @name ||= acquire_params[:name]
   end
 
-  def artwork_title
-    @artwork_title ||= acquire_params[:artwork_title]
+  def artwork
+    @artwork ||= Artwork.find_by(id: acquire_params[:artwork_id])
   end
 end

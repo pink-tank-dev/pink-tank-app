@@ -42,7 +42,7 @@ module ArtworkService
     end
 
     def invoice_id
-      "PT-#{Date.current.strftime('%Y%m%d')}-#{artwork.id}"
+      "PT-#{DateTime.current.strftime('%Y%m%d-%H%M%S%L')}-#{artwork.id}"
     end
 
     def due_date
