@@ -93,6 +93,11 @@ module Admin
       redirect_to admin_artists_path, warning: "Artist not found."
     end
 
+    def set_s3_direct_post
+      S3_BUCKET = Aws::S3::Resource.new.bucket(ENV['S3_BUCKET'])
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+    end
+
     def set_artwork
       @artwork = @artist.artworks.find_by(id: params[:id])
       redirect_to admin_artist_path(@artist), warning: "Artwork not found." unless @artwork.present?
