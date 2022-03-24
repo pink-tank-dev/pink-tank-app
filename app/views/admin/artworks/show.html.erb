@@ -28,7 +28,7 @@
     </figure>
   <% end %>
   <%= link_to "Edit", edit_admin_artist_artwork_path(@artist, @artwork), class: "btn btn-sm btn-secondary" %>
-  <%= link_to "Invoice Preview", invoice_preview_admin_artist_artwork_path(@artist, @artwork, format: :pdf), class: "btn btn-sm btn-secondary" %>
+  <%= link_to "Invoice Preview", invoice_preview_admin_artist_artwork_path(@artist, @artwork, format: :pdf), target: :_blank, class: "btn btn-sm btn-secondary" %>
   <div class="row my-2">
     <div class="col-4">
       <table class="table table-sm table-borderless">
